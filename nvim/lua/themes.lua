@@ -10,6 +10,8 @@ g.airline_theme = "gruvbox_material"
 
 -- Set current theme
 vim.cmd [[
+"    colorscheme base16-material-darker
+"    colorscheme minimal-base16
     colorscheme gruvbox-flat
 "    colorscheme onedarkpro
 ]]

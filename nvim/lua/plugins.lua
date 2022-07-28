@@ -16,46 +16,19 @@ return require('packer').startup(function()
 --    use 'junegunn/fzf.vim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
+    use 'tpope/vim-surround'
+    use 'dense-analysis/ale'
     
     -- Telescope fuzzy finder
-    use {
-        {
-          'nvim-telescope/telescope.nvim',
-          requires = {
-            'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim',
-            'telescope-frecency.nvim',
-            'telescope-fzf-native.nvim',
-            'nvim-telescope/telescope-ui-select.nvim',
-          },
-          wants = { 'popup.nvim',
-            'plenary.nvim',
-            'telescope-frecency.nvim',
-            'telescope-fzf-native.nvim',
-          },
-          setup = [[require('config.telescope_setup')]],
-          config = [[require('config.telescope')]],
-          cmd = 'Telescope',
-          module = 'telescope',
-        },
-        {
-          'nvim-telescope/telescope-frecency.nvim',
-          after = 'telescope.nvim',
-          requires = 'tami5/sqlite.lua',
-        },
-        {
-          'nvim-telescope/telescope-fzf-native.nvim',
-          run = 'make',
-        },
-      }
-
-    use 'glepnir/dashboard-nvim'
+use 'glepnir/dashboard-nvim'
 
 -- Better syntax highlighting
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
     use 'vim-python/python-syntax'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'fladson/vim-kitty'
+    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    use 'sbdchd/neoformat'
 
 -- IDE features in Vim
     -- use {'neoclide/coc.nvim', branch = 'release'}
@@ -120,11 +93,11 @@ return require('packer').startup(function()
     use 'fxn/vim-monochrome'
     use 'Lokaltog/vim-monotone'
     use 'sainnhe/gruvbox-material'
-    use 'Dave-Elec/gruvbox'
     use 'joshdick/onedark.vim'
     use 'olimorris/onedarkpro.nvim'
     use 'rakr/vim-one'
     use 'ghifarit53/tokyonight-vim'
+    use 'projekt0n/github-nvim-theme'
     use 'eddyekofo94/gruvbox-flat.nvim'
 --     use 'folke/tokyonight.nvim', { 'branch': 'main' }
     use 'logico/typewriter-vim'
@@ -135,6 +108,9 @@ return require('packer').startup(function()
     use 'arzg/vim-colors-xcode'
     use 'sainnhe/edge'
     use 'mangeshrex/everblush.vim'
-    use '~/gruvboxpro.nvim'
+    use 'Yazeed1s/minimal.nvim'
+    use 'dikiaap/minimalist'
+    use 'ackyshake/Spacegray.vim'
+    use 'chriskempson/base16-vim'
     
 end)

@@ -40,17 +40,20 @@ vnoremap("tc", "<CMD>w <BAR> bd<CR>", {desc = "Close current tab"})
 nnoremap("tc", "<CMD>w <BAR> bd<CR>", {desc = "Close current tab"})
 
 -- Move to next tab
-vnoremap("tl", "<CMD>tabn<CR>", {desc = "Move to the next tab"})
-nnoremap("tl", "<CMD>tabn<CR>", {desc = "Move to the next tab"})
+vnoremap("tl", "<CMD>tabnext<CR>", {desc = "Move to the next tab"})
+nnoremap("tl", "<CMD>tabnext<CR>", {desc = "Move to the next tab"})
 
 -- Move to previous tab
-vnoremap("th", "<CMD>tabp<CR>", {desc = "Move to previous tab"})
-nnoremap("th", "<CMD>tabp<CR>", {desc = "Move to previous tab"})
+vnoremap("th", "<CMD>tabprev<CR>", {desc = "Move to previous tab"})
+nnoremap("th", "<CMD>tabprev<CR>", {desc = "Move to previous tab"})
 
 -- Goto first tab
 vnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})
 nnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})
 
+-- Goto first tab
+vnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
+nnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 
 ------------------------------> Open Terminal Window <----------------------------
 api.nvim_create_autocmd("TermEnter", {

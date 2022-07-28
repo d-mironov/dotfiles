@@ -24,14 +24,28 @@ g.cpp_posix_standard = 1
 g.cpp_experimental_simple_template_highlight = 1
 g.cpp_experimental_template_highlight = 1
 g.cpp_concepts_highlight = 1
+-- NeoFormat config
+g.neoformat_enabled_c = {'astyle'}
+g.neoformat_enabled_cpp = {'astyle'}
+-- syntastic config
+g.syntastic_cpp_checkers = {'cpplint'}
+g.syntastic_c_checkers = {'cpplint'}
+g.syntastic_cpp_cpplint_exec = 'cpplint'
 
 require('bufferline').setup {}
 require('nvim-autopairs').setup{}
 require("which-key").setup {}
 require("nvim-tree").setup()
+require("lsp_lines").setup()
 require("toggleterm").setup{
     size = 20,
 }
+require("github-theme").setup({
+  comment_style = "italic",
+  keyword_style = "bold",
+  function_style = "NONE",
+  variable_style = "NONE"
+})
 
 local db = require("dashboard") db.custom_header = {
     "",
@@ -156,6 +170,10 @@ cmp.setup({
     {
         { name = 'buffer' },
     })
+})
+vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = true,
 })
 --local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 --require('lspconfig')['clangd'].setup {
