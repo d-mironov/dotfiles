@@ -14,8 +14,8 @@ case "$nvim_installed" in
         # Clone neovim repo
         git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/
         cd ~/Downloads/neovim/
-        make CMAKE_BUILD_TYPE=RelWithDebInfo
-        sudo make install
+        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc)
+        sudo make install -j$(nproc)
         ;;
 esac
 
@@ -26,11 +26,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 cp -r $cwd/nvim /home/$USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins...\n"
-nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null
 printf "[\033[32m+\033[0m] Done!\n"
 
-printf "Now open Neovim by running \033[32mnvim\033[0m and install the Plugins by runnning \033[32m:PackerInstall\033[0m.\n"
-printf "Not all packages might install at first, so when most of the packages are finished just restart Neovim and run \033[32m:PackerInstall\033[0m again.\n"
-printf "Then all plugins should be installed.\n"
 printf "You config files are written in \033[32m~/.config/nvim/\033[0m. There you can find the \033[32minit.lua\033[0m where you can select the theme by uncommenting a line in the Themes section."
 
