@@ -1,5 +1,6 @@
 #!/bin/sh
 
+printf "\033[34m"
 printf "     _       _    __ _ _           \n"
 sleep 0.1
 printf "    | |     | |  / _(_) |          \n"
