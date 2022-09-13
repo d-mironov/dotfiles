@@ -22,7 +22,6 @@ printf "\033[0m"
 cwd=$(pwd)
 printf "[\033[32m?\033[0m] Do you have \033[32mnvim[>=v0.7.0]\033[0m installed? [y/n] > "
 read -r nvim_installed
-default_path = "/home/$USER/Downloads"
 case "$nvim_installed" in
     [yY][eE][sS]|[yY])
         ;;
