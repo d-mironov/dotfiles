@@ -33,12 +33,12 @@ case "$nvim_installed" in
         printf "\033[32mOk\033[0m\n"
         printf "[\033[32m+\033[0m] Compiling latest Neovim..."
         # Clone neovim repo
-        git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/ > /dev/null
+        git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/ > /dev/null 2>1&
         cd ~/Downloads/neovim/
-        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) > /dev/null
+        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) > /dev/null 2>1&
         printf "\033[32mOk\033[0m\n"
         printf "[\033[32m+\033[0m] Installing..."
-        sudo make install -j$(nproc) > /dev/null 
+        sudo make install -j$(nproc) > /dev/null  2>1&
         printf "\033[32mOk\033[0m\n"
         ;;
 esac
