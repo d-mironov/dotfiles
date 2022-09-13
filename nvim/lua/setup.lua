@@ -24,9 +24,25 @@ g.cpp_posix_standard = 1
 g.cpp_experimental_simple_template_highlight = 1
 g.cpp_experimental_template_highlight = 1
 g.cpp_concepts_highlight = 1
+
 -- NeoFormat config
-g.neoformat_enabled_c = {'astyle'}
-g.neoformat_enabled_cpp = {'astyle'}
+g.neoformat_c_clangformat = {
+    exe = "clang-format",
+    args = {'--style=file:$HOME/.config/nvim/lua/.clang-format'}
+}
+g.neoformat_cpp_clangformat = {
+    exe = "clang-format",
+    args = {'--style=file:$HOME/.config/nvim/lua/.clang-format'}
+}
+g.neoformat_enabled_c = {'clangformat'}
+g.neoformat_enabled_cpp = {'clangformat'}
+vim.cmd [[
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+]]
+
 -- syntastic config
 g.syntastic_cpp_checkers = {'cpplint'}
 g.syntastic_c_checkers = {'cpplint'}
@@ -36,16 +52,17 @@ require('bufferline').setup {}
 require('nvim-autopairs').setup{}
 require("which-key").setup {}
 require("nvim-tree").setup()
-require("lsp_lines").setup()
 require("toggleterm").setup{
     size = 20,
 }
+require("nvim-lsp-installer").setup{}
 require("github-theme").setup({
   comment_style = "italic",
   keyword_style = "bold",
   function_style = "NONE",
   variable_style = "NONE"
 })
+
 
 local db = require("dashboard") db.custom_header = {
     "",
@@ -130,15 +147,15 @@ cmp.setup({
         end,
     },
     window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- ['<C-Space>'] = cmp.mapping.complete(),
-        -- ['<C-e>'] = cmp.mapping.abort(),
-        -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -160,25 +177,58 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
-        --{ name = 'nvim_lsp' },
-        { name = 'vim_lsp' },
+        { name = 'nvim_lsp' },
+        -- { name = 'vim_lsp' },
         { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
+        { name = 'path'},
     }, 
     {
         { name = 'buffer' },
     })
 })
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+------------------------------------------->LSP Server Setup<-------------------------------------------------
+--[[
+-- Install an LSP Server with :LspInstall while you are in a file
+-- Then add the LSP here
+--]]
+require('lspconfig')['ccls'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['jedi_language_server'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['zls'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['julials'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['html'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['angularls'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['grammarly'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['marksman'].setup {
+    capabilities = capabilities
+}
+--------------------------------------------------------------------------------------------------------------
+
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   virtual_lines = true,
 })
---local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---require('lspconfig')['clangd'].setup {
---  capabilities = capabilities
---}
---require('lspconfig')['zls'].setup {
---  capabilities = capabilities
---}
