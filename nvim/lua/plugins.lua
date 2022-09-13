@@ -37,7 +37,7 @@ return require('packer').startup(function()
     use {'wfxr/minimap.vim', run = ':!cargo install --locked code-minimap'}
     use 'lukas-reineke/indent-blankline.nvim'
     use 'akinsho/bufferline.nvim'
-    -- use 'prabirshrestha/vim-lsp'
+    use 'prabirshrestha/vim-lsp'
     -- use 'mattn/vim-lsp-settings'
     use 'williamboman/nvim-lsp-installer'
     use 'neovim/nvim-lspconfig'
@@ -71,33 +71,19 @@ return require('packer').startup(function()
 
 
 --================| Themes |==================
---    use 'morhetz/gruvbox'
     use 'Dave-Elec/gruvbox'
-    use 'srcery-colors/srcery-vim'
     use 'ayu-theme/ayu-vim'
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
-    use 'fxn/vim-monochrome'
-    use 'Lokaltog/vim-monotone'
     use 'sainnhe/gruvbox-material'
-    use 'joshdick/onedark.vim'
     use 'olimorris/onedarkpro.nvim'
-    use 'rakr/vim-one'
     use 'ghifarit53/tokyonight-vim'
     use 'projekt0n/github-nvim-theme'
     use 'eddyekofo94/gruvbox-flat.nvim'
 --     use 'folke/tokyonight.nvim', { 'branch': 'main' }
-    use 'logico/typewriter-vim'
     use 'sainnhe/everforest'
-    use 'rebelot/kanagawa.nvim'
-    use 'hzchirs/vim-material'
-    use 'sainnhe/sonokai'
-    use 'arzg/vim-colors-xcode'
-    use 'sainnhe/edge'
-    use 'mangeshrex/everblush.vim'
     use 'Yazeed1s/minimal.nvim'
     use 'dikiaap/minimalist'
-    use 'ackyshake/Spacegray.vim'
     use 'chriskempson/base16-vim'
     
 end)
