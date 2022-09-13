@@ -1,4 +1,7 @@
-require("impatient").enable_profile()
+local ok, impatient = pcall(require, "impatient")
+if ok then
+    impatient.enable_profile()
+end
 
 local g = vim.g
 local o, wo, bo = vim.o, vim.wo, vim.bo

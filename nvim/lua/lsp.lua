@@ -1,34 +1,37 @@
 ------------------------------------------->LSP Server Setup<-------------------------------------------------
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local ok, cmp = pcall(require, "cmp_nvim_lsp")
+local capabilities = nil
+if ok then
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+end
 --[[
 -- Install an LSP Server with :LspInstall while you are in a file
 -- Then add the LSP here
 --]]
-require('lspconfig')['ccls'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['jedi_language_server'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['zls'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['julials'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['rust_analyzer'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['gopls'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['html'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['angularls'].setup {
-    capabilities = capabilities
-}
-require('lspconfig')['marksman'].setup {
-    capabilities = capabilities
-}
---------------------------------------------------------------------------------------------------------------
+local ok, lspconfig = pcall(require, "lspconfig")
+if ok and capabilities ~= nil then
+    lspconfig['ccls'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['jedi_language_server'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['zls'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['julials'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['rust_analyzer'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['gopls'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['html'].setup {
+        capabilities = capabilities
+    }
+    lspconfig['marksman'].setup {
+        capabilities = capabilities
+    }
+end
