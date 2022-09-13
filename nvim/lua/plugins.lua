@@ -80,7 +80,7 @@ return require('packer').startup(function()
     use 'ghifarit53/tokyonight-vim'
     use 'projekt0n/github-nvim-theme'
     use 'eddyekofo94/gruvbox-flat.nvim'
---     use 'folke/tokyonight.nvim', { 'branch': 'main' }
+    use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
     use 'Yazeed1s/minimal.nvim'
     use 'dikiaap/minimalist'

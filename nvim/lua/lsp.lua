@@ -34,4 +34,7 @@ if ok and capabilities ~= nil then
     lspconfig['marksman'].setup {
         capabilities = capabilities
     }
+    lspconfig['bashls'].setup {
+        capabilities = capabilities
+    }
 end

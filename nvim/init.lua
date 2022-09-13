@@ -37,7 +37,7 @@ g.gruvbox_flat_style = "soft"
 
 ------------> colorscheme selection <------------------
 vim.cmd [[
-"    colorscheme gruvbox-flat
+    colorscheme gruvbox-flat
 "    colorscheme everforest
 "    colorscheme base16-material-darker
 "    colorscheme minimal-base16
