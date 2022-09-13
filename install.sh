@@ -38,20 +38,20 @@ case "$nvim_installed" in
         printf "[\033[32mOk\033[0m]\n"
         printf "[\033[32m+\033[0m] Installing..."
         sudo make install -j$(nproc)
-        printf "[\033[32mOk!\033[0m]\n"
+        printf "[\033[32mOk\033[0m]\n"
         ;;
 esac
 
 # # Install packer.nvim as a plugin manager for neovim
 printf "[\033[32m+\033[0m] Installing Plugin Manager..."
-printf "[\033[32mOk!\033[0m]\n"
+printf "[\033[32mOk\033[0m]\n"
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1
 # 
 cp -r $cwd/nvim /home/$USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins..."
 nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null 2>&1
-printf "[\033[32mOk!\033[0m]\n"
+printf "[\033[32mOk\033[0m]\n"
 
 printf "\n\n\033[32mConfig files written into:\n"
 printf " ==> \033[31m~/.config/nvim\n\n"
