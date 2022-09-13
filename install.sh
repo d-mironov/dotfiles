@@ -38,7 +38,7 @@ case "$nvim_installed" in
         make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) > /dev/null
         printf "[\033[32mOk\033[0m]\n"
         printf "[\033[32m+\033[0m] Installing..."
-        sudo make install -j$(nproc)
+        sudo make install -j$(nproc) > /dev/null 
         printf "[\033[32mOk\033[0m]\n"
         ;;
 esac
