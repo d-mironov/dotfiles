@@ -48,7 +48,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 cp -r $cwd/nvim /home/$USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins...\n"
-nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null
+nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null 2>&1
 printf "\n[\033[32m+\033[0m] Done!\n"
 
 printf "\n\n\033[32mConfig files written into:\n"
