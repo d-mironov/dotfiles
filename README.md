@@ -49,18 +49,3 @@ When in Autocompletion:
 `Ctrl + b/f`: Scroll through the documentation  
 
 More keybinds will be added once I discover some new shortcuts for something.  
-
-### First install:
-On first install you need to comment out some lines in the `init.lua` like so:
-```lua
--- require("impatient").enable_profile()
-vim.cmd [[
-runtime! lua/plugins.lua
-"runtime! lua/keybinds.lua
-"runtime! lua/setup.lua
-"runtime! lua/lsp.lua
-runtime! lua/init.lua
-]]
-```
-Then you need to call `:PackerInstall` to install all of the plugins needed for the setup process. 
-After that you can uncomment the lines again and you should be good to go.
