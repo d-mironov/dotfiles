@@ -41,9 +41,8 @@ case "$nvim_installed" in
 esac
 
 # # Install packer.nvim as a plugin manager for neovim
-printf "[\033[32m+\033[0m] Downloading Plugin Manager\n"
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null
+printf "[\033[32m+\033[0m] Installing Plugin Manager\n"
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1
 # 
 cp -r $cwd/nvim /home/$USER/.config/
 
