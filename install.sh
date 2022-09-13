@@ -27,7 +27,7 @@ cp -r $cwd/nvim /home/$USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins...\n"
 nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null
-printf "[\033[32m+\033[0m] Done!\n"
+printf "\n[\033[32m+\033[0m] Done!\n"
 
 printf "You config files are written in \033[32m~/.config/nvim/\033[0m. There you can find the \033[32minit.lua\033[0m where you can select the theme by uncommenting a line in the Themes section."
 
