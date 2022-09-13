@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cwd=$(pwd)
 printf "[\033[32m?\033[0m] Do you have \033[32mnvim[>=v0.7.0]\033[0m installed? [y/n] > "
 read -r nvim_installed
 default_path = "/home/$USER/Downloads"
@@ -22,9 +23,7 @@ esac
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 # 
-git clone https://github.com/moonxraccoon/dotfiles /home/$USER/Downloads/
-cd /home/$USER/dotfiles
-cp -r ./nvim /home/$USER/.config/
+cp -r $cwd/nvim /home/$USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins...\n"
 nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
