@@ -1,5 +1,19 @@
-# moonxraccoon's Dotfiles
+<div align="center">
+```ocaml
+SIMPLE / FUNCTIONAL / EASY TO USE
+```
 
+```css
+     _       _    __ _ _           
+    | |     | |  / _(_) |          
+  __| | ___ | |_| |_ _| | ___  ___ 
+ / _  |/ _ \| __|  _| | |/ _ \/ __|
+ |(_| | (_) | |_| | | | |  __/\__ \ 
+ \__,_|\___/\___|_| |_|_|\___||___/
+                     by moonraccoon
+
+```
+</div>
 ## Installation
 For now only Debian based Linux Distributions work. Need to implement and test the script to install all the dependencies based on the used Distribution.
 This will be added later.  
