@@ -29,14 +29,14 @@ case "$nvim_installed" in
     *)
         printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n"
         # Install neovim prerequisites for building
-        sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential
+        sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -qq
         # printf "\033[32mOk\033[0m\n"
         printf "[\033[32m+\033[0m] Compiling latest Neovim...\n"
         # Clone neovim repo
         git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/
         cd ~/Downloads/neovim/
         make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) > /dev/null 2>1&
-        printf "[\033[32m+\033[0m]\033[32mDone\033[0m\n"
+        printf "[\033[32m+\033[0m]\033[32m Done\033[0m\n"
         printf "[\033[32m+\033[0m] Installing..."
         sudo make install -j$(nproc) > /dev/null  2>1&
         printf "\033[32mOk\033[0m\n"
