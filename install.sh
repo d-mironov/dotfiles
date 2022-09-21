@@ -5,7 +5,8 @@ printf "     _       _    __ _ _           \n"
 sleep 0.1
 printf "    | |     | |  / _(_) |          \n"
 sleep 0.1
-printf "  __| | ___ | |_| |_ _| | ___  ___ \n" sleep 0.1
+printf "  __| | ___ | |_| |_ _| | ___  ___ \n"
+sleep 0.1
 printf " / _  |/ _ \\| __|  _| | |/ _ \\/ __|\n"
 sleep 0.1
 printf "| (_| | (_) | |_| | | | |  __/\\__ \ \n"
@@ -13,7 +14,7 @@ sleep 0.1
 printf " \\__,_|\\___/ \\__|_| |_|_|\\___||___/\n"
 sleep 0.1
 printf "\033[31m"
-printf "                     by moonraccoon\n"
+printf "                     by moonraccoon\n\n\n"
 sleep 0.1
 printf "\033[0m"
                                    
@@ -26,10 +27,10 @@ case "$nvim_installed" in
     [yY][eE][sS]|[yY])
         ;;
     *)
-        printf "[\033[32m+\033[0m] Installing Neovim prerequisites..."
+        printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n"
         # Install neovim prerequisites for building
-        sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential > /dev/null
-        printf "\033[32mOk\033[0m\n"
+        sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential
+        # printf "\033[32mOk\033[0m\n"
         printf "[\033[32m+\033[0m] Compiling latest Neovim...\n"
         # Clone neovim repo
         git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/
