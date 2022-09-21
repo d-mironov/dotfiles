@@ -14,7 +14,9 @@ SIMPLE / FUNCTIONAL / EASY TO USE
                      by moonraccoon
 
 ```
+
 </div>
+
 ## Installation
 For now only Debian based Linux Distributions work. Need to implement and test the script to install all the dependencies based on the used Distribution.
 This will be added later.  
