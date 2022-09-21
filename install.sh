@@ -68,13 +68,13 @@ printf "  \033[32m]]\n\033[0m"
 
 printf "[\033[32m?\033[0m] Do you want to install kitty as your terminal? [y/N] > "
 read -r install_kitty
-case "$nvim_installed" in
+case "$install_kitty" in
     [yY][eE][sS]|[yY])
-        ;;
-    *)
         printf "[\033[32m+\033[0m] Installing kitty..."
         sudo apt install kitty > /dev/null
         printf "\033[32mOk\033[0m\n"
+        ;;
+    *)
         ;;
 esac
 
