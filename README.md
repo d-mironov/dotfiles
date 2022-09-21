@@ -1,5 +1,28 @@
 # moonxraccoon's Dotfiles
-An install script will be added to install all dependencies and automate the neovim config process.
+
+## Installation
+For now only Debian based Linux Distributions work. Need to implement and test the script to install all the dependencies based on the used Distribution.
+This will be added later.  
+You first need to have `git` installed. So install `git` with:  
+```bash
+sudo apt-get install git
+```
+Once `git` is installed clone the repository with  
+```bash
+git clone https://github.com/moonxraccoon/dotfiles
+```
+and enter the folder  
+```bash
+cd dotfiles
+```
+Now you can just run  
+```bash
+./install.sh
+```
+and follow the instructions. You have the option to build and install Neovim from the master branch if you don't have `nvim[>=v0.7.0]` installed.  
+This will install **Packer** as the plugin manager for nvim and also install all the plugins which I have active at the moment.  
+Once the `nvim` install an configuration finishes, you can find the config files in `~/.config/nvim`. The folder structure is 
+explained below.
 
 ## Software Used
 - neovim as my main Code Editor/IDE
