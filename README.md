@@ -50,15 +50,15 @@ require('lspconfig')['<YOUR_LSP>'].setup {
 ```
 Where `YOUR_LSP` is the LSP name you installed.  
 The following LSP Server's are already preconfigured:  
-- ccls(C/C++)
-- jedi_language_server(Python)
-- zls(Zig)
-- julials(Julia)
-- rust_analyzer(Rust)
-- gopls(Golang)
-- html(HTML)
-- marksman(Markdown)
-- bashls(Bash) 
+- `ccls` (C/C++)
+- `jedi_language_server` (Python)
+- `zls` (Zig)
+- `julials` (Julia)
+- `rust_analyzer` (Rust)
+- `gopls` (Golang)
+- `html` (HTML)
+- `marksman` (Markdown)
+- `bashls` (Bash) 
 Once I have the time, I will also automate this process so you just need to type `:AddLspConfig`.
 
 ### General Keybinds:
