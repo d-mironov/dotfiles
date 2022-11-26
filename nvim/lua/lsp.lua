@@ -10,7 +10,7 @@ end
 --]]
 local ok, lspconfig = pcall(require, "lspconfig")
 if ok and capabilities ~= nil then
-    lspconfig['ccls'].setup {
+    lspconfig['clangd'].setup {
         capabilities = capabilities
     }
     lspconfig['jedi_language_server'].setup {
