@@ -2,7 +2,7 @@
 local ok, cmp = pcall(require, "cmp_nvim_lsp")
 local capabilities = nil
 if ok then
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 --[[
 -- Install an LSP Server with :LspInstall while you are in a file
