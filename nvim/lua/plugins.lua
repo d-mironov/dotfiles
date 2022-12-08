@@ -39,8 +39,11 @@ return require('packer').startup(function()
     use 'akinsho/bufferline.nvim'
     use 'prabirshrestha/vim-lsp'
     -- use 'mattn/vim-lsp-settings'
-    use 'williamboman/nvim-lsp-installer'
+    -- use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
+
     use 'ryanoasis/vim-devicons'
     use 'akinsho/toggleterm.nvim'
     use 'windwp/nvim-autopairs'

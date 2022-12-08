@@ -25,6 +25,27 @@ g.cpp_experimental_simple_template_highlight = 1
 g.cpp_experimental_template_highlight = 1
 g.cpp_concepts_highlight = 1
 
+-- Wether you want Autoformat on save or not (does not work lol)
+format_autosafe = true
+
+-- Gruvbox material setup
+g.gruvbox_material_diagnostic_virtual_text = "colored"
+vim.cmd [[
+    function! s:gruvbox_material_custom() abort
+        " Link a highlight group to a predefined highlight group.
+        " See `colors/gruvbox-material.vim` for all predefined highlight groups.
+        highlight! link TSPunctBracket Red
+        highlight! link TSProperty Red
+        highlight! link TSConstant Yellow 
+    endfunction
+    
+    augroup GruvboxMaterialCustom
+        autocmd!
+        autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
+    augroup END
+]]
+
+
 -- NeoFormat config
 g.neoformat_c_clangformat = {
     exe = "clang-format",
@@ -37,12 +58,14 @@ g.neoformat_cpp_clangformat = {
 g.neoformat_enabled_c = {'clangformat'}
 g.neoformat_enabled_cpp = {'clangformat'}
 
-vim.cmd [[
-augroup fmt
-  autocmd!
-  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
-]]
+if format_autosafe == true then
+    vim.cmd [[
+    augroup fmt
+      autocmd!
+      au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+    augroup END
+    ]]
+end
 
 -- syntastic config
 g.syntastic_cpp_checkers = {'cpplint'}
@@ -76,9 +99,14 @@ if ok then
     }
 end
 
-local ok, lspinstaller = pcall(require, "nvim-lsp-installer")
+local ok, mason = pcall(require, "mason")
 if ok then
-    lspinstaller.setup{}
+    mason.setup()
+end
+
+local ok, mason_lspconfig = pcall(require, "mason")
+if ok then
+    mason_lspconfig.setup()
 end
 
 local ok, github_theme = pcall(require, "github-theme")
@@ -222,6 +250,7 @@ if ok then
         })
     })
 end
+
 
 vim.diagnostic.config({
   virtual_text = false,

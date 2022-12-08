@@ -35,13 +35,17 @@ runtime! lua/init.lua
 ------------> Theme Specific configurations <----------
 g.gruvbox_flat_style = "soft"
 
+g.gruvbox_material_background = "soft"
+g.gruvbox_material_enable_bold = 1
+g.gruvbox_material_spell_foreground = "colored"
+
 ------------> colorscheme selection <------------------
 vim.cmd [[
-    colorscheme gruvbox-flat
+"    colorscheme gruvbox-flat
 "    colorscheme everforest
 "    colorscheme base16-material-darker
 "    colorscheme minimal-base16
-"    colorscheme gruvbox-material
+    colorscheme gruvbox-material
 "    colorscheme onedarkpro
 ]]
 
