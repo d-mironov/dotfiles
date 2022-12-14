@@ -12,6 +12,7 @@ nnoremap("<C-J>", "<C-W><C-J>", { desc = "Focus window beneath"})
 nnoremap("<C-K>", "<C-W><C-K>", { desc = "Focus window above"})
 nnoremap("<C-L>", "<C-W><C-L>", { desc = "Focus window right"})
 nnoremap("<C-H>", "<C-W><C-H>", { desc = "Focus window left"})
+nnoremap("<C-Tab>", "<CMD>bnext<CR>", { desc = "Cycle through buffers"})
 
 -- Open file explorer
 vnoremap("fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
@@ -46,6 +47,7 @@ nnoremap("tl", "<CMD>tabnext<CR>", {desc = "Move to the next tab"})
 -- Move to previous tab
 vnoremap("th", "<CMD>tabprev<CR>", {desc = "Move to previous tab"})
 nnoremap("th", "<CMD>tabprev<CR>", {desc = "Move to previous tab"})
+
 
 -- Goto first tab
 vnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})

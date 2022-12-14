@@ -13,7 +13,6 @@ cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]]
 
-
 vim.cmd [[
 runtime! lua/plugins.lua
 runtime! lua/keybinds.lua

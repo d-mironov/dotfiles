@@ -26,7 +26,7 @@ g.cpp_experimental_template_highlight = 1
 g.cpp_concepts_highlight = 1
 
 -- Wether you want Autoformat on save or not (does not work lol)
-format_autosafe = true
+format_autosafe = false
 
 -- Gruvbox material setup
 g.gruvbox_material_diagnostic_virtual_text = "colored"
@@ -68,13 +68,25 @@ if format_autosafe == true then
 end
 
 -- syntastic config
-g.syntastic_cpp_checkers = {'cpplint'}
-g.syntastic_c_checkers = {'cpplint'}
-g.syntastic_cpp_cpplint_exec = 'cpplint'
+-- g.syntastic_cpp_checkers = {'cpplint'}
+-- g.syntastic_c_checkers = {'cpplint'}
+-- g.syntastic_cpp_cpplint_exec = 'cpplint'
 
 local ok, bl = pcall(require, "bufferline")
 if ok then
-    bl.setup {}
+    bl.setup{
+        options = {
+            indicator = {
+                style = 'none',
+            },
+            show_buffer_icons = false,
+            show_buffer_close_icons = false,
+            show_close_icon = false,
+            show_buffer_default_icon = false,
+            tab_size = 10,
+            max_name_length = 10,
+        }
+    }
 end
 
 local ok, nvimautopairs = pcall(require, "nvim-autopairs")
@@ -104,18 +116,23 @@ if ok then
     mason.setup()
 end
 
-local ok, mason_lspconfig = pcall(require, "mason")
+local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if ok then
-    mason_lspconfig.setup()
-end
-
-local ok, github_theme = pcall(require, "github-theme")
-if ok then
-    github_theme.setup({
-      comment_style = "italic",
-      keyword_style = "bold",
-      function_style = "NONE",
-      variable_style = "NONE"
+    mason_lspconfig.setup({
+        ensure_installed = {
+            "clangd",
+            "jedi_language_server",
+            "zls",
+            "julials",
+            "rust_analyzer",
+            "gopls",
+            "html",
+            "marksman",
+            "bashls",
+            "jdtls",
+            "tsserver"
+        },
+        automatic_installation = true,
     })
 end
 
@@ -252,7 +269,7 @@ if ok then
 end
 
 
-vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = true,
-})
+-- vim.diagnostic.config({
+--   virtual_text = false,
+--   virtual_lines = true,
+-- })
