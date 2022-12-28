@@ -3,30 +3,51 @@ vim.cmd[[packadd packer.nvim]]
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
+
 -- File browser
-    use 'nvim-lua/plenary.nvim'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
     }
-    use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
+    use {
+        'nvim-telescope/telescope.nvim', -- Fuzzy finder
+        requires = {
+            'nvim-lua/plenary.nvim',
+        },
+    }
     use 'akinsho/bufferline.nvim'
-    use 'tpope/vim-surround'            -- matching braces
     
     use 'glepnir/dashboard-nvim'        -- Startup dashboard
 
 -- Better syntax highlighting
-    use 'vim-python/python-syntax'
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function() 
+            pcall(require('nvim-treesitter.install').update{ with_sync = true})
+        end,
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        after = 'nvim-treesitter',
+    }
+    -- Autoformatting
     use 'sbdchd/neoformat'
 
--- IDE features in Vim
+-- IDE features in Vim (LSP)
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'j-hui/fidget.nvim',
+            'folke/neodev.nvim',
+        },
+    }
     use 'lukas-reineke/indent-blankline.nvim'
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
-    use 'neovim/nvim-lspconfig'
+    use 'tpope/vim-surround'            -- matching braces
+    use 'numToStr/Comment.nvim'
 
     use 'ryanoasis/vim-devicons'
     use 'akinsho/toggleterm.nvim'

@@ -1,13 +1,30 @@
 ------------------------------------------->LSP Server Setup<-------------------------------------------------
+--[[
 local ok, cmp = pcall(require, "cmp_nvim_lsp")
 local capabilities = nil
 if ok then
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
+--]]
+
+local servers = {
+    clangd = {},
+    jedi_language_server = {},
+    zls = {},
+    julials = {},
+    rust_analyzer = {},
+    gopls = {},
+    html = {},
+    marksman = {},
+    bashls = {},
+    jdtls = {},
+    tsserver = {},
+}
+return servers
+
 --[[
 -- Install an LSP Server with :LspInstall while you are in a file
 -- Then add the LSP here
---]]
 local ok, lspconfig = pcall(require, "lspconfig")
 if ok and capabilities ~= nil then
     lspconfig['clangd'].setup {
@@ -44,3 +61,4 @@ if ok and capabilities ~= nil then
         capabilities = capabilities
     }
 end
+--]]
