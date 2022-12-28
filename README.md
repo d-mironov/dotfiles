@@ -61,8 +61,12 @@ To use the autocompletion you need to go to the file you want the autocompletion
 work on. Then you install the language server with `:LspInstall` and select the 
 languageserver you want. Once it is installed you can add the LSP to the autocompletion like so:
 ```lua
-require('lspconfig')['<YOUR_LSP>'].setup {
-    capabilities = capabilities
+local servers = {
+    lsp_name = {},
+
+    -- clangd = {},
+    -- jedi_language_server = {},
+    ...
 }
 ```
 Where `YOUR_LSP` is the LSP name you installed.  
@@ -90,6 +94,7 @@ Once I have the time, I will also automate this process so you just need to type
 `th`: Move to the previous tab  
 `tf`: Go to the first tab  
 `fm`: Format the file you are in (Also formats on saving file)
+`K`: Hover definition of function, variable, etc.
 
 When in Autocompletion:  
 `Tab`: Go to next autocomplete suggestion  
