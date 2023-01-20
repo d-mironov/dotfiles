@@ -34,7 +34,8 @@ runtime! lua/init.lua
 ------------> Theme Specific configurations <----------
 g.gruvbox_flat_style = "soft"
 
-g.gruvbox_material_background = "soft"
+g.gruvbox_material_colors_override = { bg0 = {'#1d1d1d', '234'} }
+g.gruvbox_material_background = "hard"
 g.gruvbox_material_enable_bold = 1
 g.gruvbox_material_spell_foreground = "colored"
 
