@@ -27,18 +27,25 @@ case "$nvim_installed" in
     [yY][eE][sS]|[yY])
         ;;
     *)
-        printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n"
-        # Install neovim prerequisites for building
-        sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -qq
-        # printf "\033[32mOk\033[0m\n"
+	    printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n"
+        if [ "$(grep -Ei 'Ubuntu|Debian' /etc/*release)" ]; then
+            sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -qq
+        elif [ "$(grep -Ei 'Fedora|Red Hat' /etc/*release)" ]; then
+            sudo dnf install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -y
+        elif [ "$(grep -Ei 'Arch' /etc/*release)" ]; then
+            sudo pacman -S ninja gettext libtool autoconf automake cmake make g++ pkg-config unzip curl doxygen base-devel --noconfirm
+        fi
+
         printf "[\033[32m+\033[0m] Compiling latest Neovim...\n"
         # Clone neovim repo
-        git clone https://github.com/neovim/neovim /home/$USER/Downloads/neovim/
-        cd ~/Downloads/neovim/
-        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) > /dev/null 2>1&
+        git clone https://github.com/neovim/neovim
+        cd neovim
+        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc)# > /dev/null 2>1&
         printf "[\033[32m+\033[0m]\033[32m Done\033[0m\n"
-        printf "[\033[32m+\033[0m] Installing..."
-        sudo make install -j$(nproc) > /dev/null  2>1&
+        printf "[\033[32m+\033[0m] Installing...\n"
+	    sudo make install -j$(nproc) # > /dev/null 2>1&
+	    cd ..
+	    rm -R -f neovim
         printf "\033[32mOk\033[0m\n"
         ;;
 esac
@@ -46,12 +53,12 @@ esac
 # # Install packer.nvim as a plugin manager for neovim
 printf "[\033[32m+\033[0m] Installing Plugin Manager..."
 printf "\033[32mOk\033[0m\n"
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1
+sudo -u $SUDO_USER git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1
 # 
-cp -r $cwd/nvim /home/$USER/.config/
+sudo -u $SUDO_USER cp -r $cwd/nvim /home/$SUDO_USER/.config/
 
 printf "[\033[32m+\033[0m] Installing Neovim plugins..."
-nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null 2>&1
+sudo -u $SUDO_USER nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync" > /dev/null 2>&1
 printf "\033[32mOk\033[0m\n"
 
 printf "\n\n\033[32mConfig files written into:\n"
