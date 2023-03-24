@@ -31,7 +31,7 @@ case "$nvim_installed" in
         if [ "$(grep -Ei 'Ubuntu|Debian' /etc/*release)" ]; then
             sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -qq
         elif [ "$(grep -Ei 'Fedora|Red Hat' /etc/*release)" ]; then
-            sudo dnf install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen build-essential -y
+	    sudo dnf -y install ninja-build libtool cmake gcc gcc-c++ make pkgconfig unzip gettext curl
         elif [ "$(grep -Ei 'Arch' /etc/*release)" ]; then
             sudo pacman -S ninja gettext libtool autoconf automake cmake make g++ pkg-config unzip curl doxygen base-devel --noconfirm
         fi
