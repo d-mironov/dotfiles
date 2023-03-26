@@ -53,7 +53,7 @@ esac
 # # Install packer.nvim as a plugin manager for neovim
 printf "[\033[32m+\033[0m] Installing Plugin Manager..."
 printf "\033[32mOk\033[0m\n"
-sudo -u $SUDO_USER git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1
+sudo -u $SUDO_USER git clone --depth 1 https://github.com/wbthomason/packer.nvim /home/$SUDO_USER/.local/share/nvim/site/pack/packer/start/packer.nvim
 # 
 sudo -u $SUDO_USER cp -r $cwd/nvim /home/$SUDO_USER/.config/
 

@@ -11,7 +11,6 @@ local servers = {
     clangd = {},
     jedi_language_server = {},
     zls = {},
-    julials = {},
     rust_analyzer = {},
     gopls = {},
     html = {},
