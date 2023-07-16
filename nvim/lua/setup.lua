@@ -324,7 +324,7 @@ if ok then
     
             ["<S-Tab>"] = cmp.mapping(function()
                 if cmp.visible() then
-                    cmp.select_prev()
+                    cmp.select_prev_item()
                 end
                 -- cmp_ultisnips_mappings.jump_backwards(fallback)
                 -- if cmp.visible() then
