@@ -342,6 +342,7 @@ if ok then
             -- { name = 'snippy' }, -- For snippy users.
             { name = 'path'},
             { name = 'buffer' },
+            { name = 'copilot' },
         })
     })
 end

@@ -51,6 +51,8 @@ return require('packer').startup(function()
     
     use 'rcarriga/nvim-notify'
 
+    use 'github/copilot.vim'
+
 -- IDE features in Vim (LSP)
     use {
         'neovim/nvim-lspconfig',
