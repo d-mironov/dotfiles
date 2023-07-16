@@ -27,6 +27,13 @@ g.cpp_concepts_highlight = 1
 g.mapleader = ' '
 g.maplocalleader = ' '
 
+
+local ok, notify = pcall(require, "notify")
+if ok then
+    vim.notify = notify
+end
+
+
 -- Wether you want Autoformat on save or not (does not work lol)
 format_autosafe = false
 
@@ -157,8 +164,7 @@ if ok then
     }
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local ok, mason = pcall(require, "mason")
 if ok then
@@ -275,16 +281,22 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+local ok, cmp_ultisnip = pcall(require, "cmp_nvim_ultisnips")
+if ok then
+   cmp_ultisnip.setup{} 
+end
+
 local ok, cmp = pcall(require, "cmp")
 if ok then
+    local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
     cmp.setup({
         snippet = {
             -- REQUIRED - you must specify a snippet engine
             expand = function(args)
-              vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+              -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
               -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
               -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-              -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+              vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             end,
         },
         window = {
@@ -298,10 +310,11 @@ if ok then
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             ["<Tab>"] = cmp.mapping(function(fallback)
+                -- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
-                elseif vim.fn["vsnip#available"](1) == 1 then
-                    feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                -- elseif vim.fn["vsnip#available"](1) == 1 then
+                --     feedkey("<Plug>(vsnip-expand-or-jump)", "")
                 elseif has_words_before() then
                     cmp.complete()
                 else
@@ -311,17 +324,21 @@ if ok then
     
             ["<S-Tab>"] = cmp.mapping(function()
                 if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                    feedkey("<Plug>(vsnip-jump-prev)", "")
+                    cmp.select_prev()
                 end
+                -- cmp_ultisnips_mappings.jump_backwards(fallback)
+                -- if cmp.visible() then
+                --     cmp.select_prev_item()
+                -- elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                --     feedkey("<Plug>(vsnip-jump-prev)", "")
+                -- end
             end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'vsnip' }, -- For vsnip users.
+            -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
+            { name = 'ultisnips' }, -- For ultisnips users.
             -- { name = 'snippy' }, -- For snippy users.
             { name = 'path'},
             { name = 'buffer' },

@@ -4,7 +4,34 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
 
--- File browser
+    use 'dstein64/vim-startuptime'
+
+    -- auto-completion engine
+    use "hrsh7th/nvim-cmp"
+    use { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }
+    use { "hrsh7th/cmp-path", after = "nvim-cmp" }
+    use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
+    use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
+    use { "quangnguyen30192/cmp-nvim-ultisnips", after = { "nvim-cmp", "ultisnips" } }
+    use {
+        "SirVer/ultisnips",
+        event = "InsertEnter"
+    }
+    use {
+        "honza/vim-snippets", 
+        after = "ultisnips"
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+        requires = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+        }
+    }
+
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
@@ -18,22 +45,11 @@ return require('packer').startup(function()
         },
     }
     use 'akinsho/bufferline.nvim'
-    
-    use 'glepnir/dashboard-nvim'        -- Startup dashboard
 
--- Better syntax highlighting
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function() 
-            pcall(require('nvim-treesitter.install').update{ with_sync = true})
-        end,
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
-    }
     -- Autoformatting
     use 'sbdchd/neoformat'
+    
+    use 'rcarriga/nvim-notify'
 
 -- IDE features in Vim (LSP)
     use {
@@ -47,29 +63,13 @@ return require('packer').startup(function()
     }
     use 'lukas-reineke/indent-blankline.nvim'
     use 'tpope/vim-surround'            -- matching braces
-    use 'numToStr/Comment.nvim'
+    -- use 'numToStr/Comment.nvim'
 
-    use 'ryanoasis/vim-devicons'
     use 'akinsho/toggleterm.nvim'
-    use 'windwp/nvim-autopairs'
+    -- use 'windwp/nvim-autopairs'
 
-    use 'normen/vim-pio'
-    use 'ziglang/zig.vim'
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/vim-vsnip',
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-            'dcampos/nvim-snippy',
-            'dcampos/cmp-snippy',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-vsnip'
-        },
-    }
+    -- use 'normen/vim-pio'
+    -- use 'ziglang/zig.vim'
 
 
 --================| Themes |==================
