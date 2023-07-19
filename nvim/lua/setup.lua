@@ -24,8 +24,8 @@ g.cpp_posix_standard = 1
 g.cpp_experimental_simple_template_highlight = 1
 g.cpp_experimental_template_highlight = 1
 g.cpp_concepts_highlight = 1
-g.mapleader = ' '
-g.maplocalleader = ' '
+g.mapleader = ','
+g.maplocalleader = ','
 
 
 local ok, notify = pcall(require, "notify")
@@ -73,6 +73,8 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+  nmap('<leader>w', '<cmd>w<cr>', '[W]rite buffer')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -247,6 +249,18 @@ if ok then
         desc = 'Quit NeoVim',
         action = 'q',
         shortcut = ''},
+    }
+end
+
+local ok, telescope = pcall(require, "telescope")
+if ok then
+    telescope.setup{
+        defaults = {
+            file_ignore_patterns = {
+                "%.d", "%.o", "%.slo", "%.lo", "%.obj", "%.a", -- Ignore build files for C/C++
+                "%.pdf", "%.zip", "%.tar", "%.tar.%", "%.jpg", "%.jpeg", "%.png", "%.bmp" -- ignore common files
+            },
+        },
     }
 end
 
