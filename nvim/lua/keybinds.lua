@@ -14,6 +14,9 @@ nnoremap("<C-L>", "<C-W><C-L>", { desc = "Focus window right"})
 nnoremap("<C-H>", "<C-W><C-H>", { desc = "Focus window left"})
 nnoremap("<C-Tab>", "<CMD>bnext<CR>", { desc = "Cycle through buffers"})
 
+nnoremap("sv", "<C-W>v", { desc = "[S]plit [V]ertical"})
+nnoremap("sh", "<C-W>s", { desc = "[S]plit [H]orizontal"})
+
 -- Open file explorer
 vnoremap("fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
 nnoremap("fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
