@@ -1,93 +1,159 @@
-vim.cmd[[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-    use 'lewis6991/impatient.nvim'
-
-    use 'dstein64/vim-startuptime'
-
-    -- auto-completion engine
-    use "hrsh7th/nvim-cmp"
-    use { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }
-    use { "hrsh7th/cmp-path", after = "nvim-cmp" }
-    use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
-    use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
-    use { "quangnguyen30192/cmp-nvim-ultisnips", after = { "nvim-cmp", "ultisnips" } }
-    use {
-        "SirVer/ultisnips",
-        event = "InsertEnter"
-    }
-    use {
-        "honza/vim-snippets", 
-        after = "ultisnips"
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
+require("lazy").setup({
+    -- LSP configuration
+    {
+        "neovim/nvim-lspconfig",
+        event = {"BufRead", "BufNewFile"},
+        dependencies = {
+            {
+                "williamboman/mason.nvim",
+                config = function()
+                    require("mason").setup()
+                end
+            },
+            "williamboman/mason-lspconfig.nvim",
+        },
+        config = function()
+            require("config.lsp")
+        end
+    },
+    -- Auto-completion engine
+    {
+        "hrsh7th/nvim-cmp",
+        event = "VeryLazy",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",     -- Builtin Neovim LSP
+            "hrsh7th/cmp-path",         -- Path completion
+            "hrsh7th/cmp-buffer",       -- Buffer completion
+            "hrsh7th/cmp-omni",
+            {
+                "quangnguyen30192/cmp-nvim-ultisnips",
+                config = function()
+                    require("cmp_nvim_ultisnips").setup{}
+                end
+            }
+        },
+        config = function()
+            require("config.nvim-cmp")
         end,
-        requires = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-        }
-    }
+    },
 
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    -- Snippet engine
+    {
+	    "SirVer/ultisnips",
+	    event = "InsertEnter",
+	    dependencies = {
+	        "honza/vim-snippets",
+    	},
+    },
+
+    -- Better Syntax Highlighting
+    {
+        "nvim-treesitter/nvim-treesitter",
+        enabled = true,
+        event = "VeryLazy",
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true})()
+        end,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
         },
-    }
-    use {
-        'nvim-telescope/telescope.nvim', -- Fuzzy finder
-        requires = {
-            'nvim-lua/plenary.nvim',
+        config = function()
+            require("config.treesitter")
+        end,
+    },
+
+    -- Fuzzy Finder
+    {
+        "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
+        dependencies = {
+            "nvim-telescope/telescope-symbols.nvim",
+            "nvim-lua/plenary.nvim",
         },
-    }
-    use 'akinsho/bufferline.nvim'
+    },
+    -- Terminal popup
+    {
+        "akinsho/toggleterm.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("toggleterm").setup({
+                size = 20,
+            })
+        end,
+    },
 
-    -- Autoformatting
-    use 'sbdchd/neoformat'
-    
-    use 'rcarriga/nvim-notify'
+    -- Github Copilot
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup()
+        end
+    },
 
-    use 'github/copilot.vim'
-
--- IDE features in Vim (LSP)
-    use {
-        'neovim/nvim-lspconfig',
-        requires = {
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            'j-hui/fidget.nvim',
-            'folke/neodev.nvim',
+    -- File Explorer
+    {
+        "nvim-tree/nvim-tree.lua",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
         },
-    }
-    use 'lukas-reineke/indent-blankline.nvim'
-    use 'tpope/vim-surround'            -- matching braces
-    -- use 'numToStr/Comment.nvim'
+        config = function()
+            require("nvim-tree").setup()
+        end,
+    },
 
-    use 'akinsho/toggleterm.nvim'
-    -- use 'windwp/nvim-autopairs'
+    {
+        "glepnir/dashboard-nvim",
+        event = "VimEnter",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("config.dashboard")
+        end
+    },
 
-    -- use 'normen/vim-pio'
-    -- use 'ziglang/zig.vim'
+    "tpope/vim-surround",
+    "akinsho/bufferline.nvim",
+    "sbdchd/neoformat",
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("config.indent-blankline")
+        end,
+    },
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            vim.notify = require("notify")
+        end,
+    },
 
 
---================| Themes |==================
-    use 'Dave-Elec/gruvbox'
-    use 'ayu-theme/ayu-vim'
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
-    use 'sainnhe/gruvbox-material'
-    use 'olimorris/onedarkpro.nvim'
-    use 'ghifarit53/tokyonight-vim'
-    use 'projekt0n/github-nvim-theme'
-    use 'eddyekofo94/gruvbox-flat.nvim'
-    use 'folke/tokyonight.nvim'
-    use 'sainnhe/everforest'
-    use 'Yazeed1s/minimal.nvim'
-    use 'dikiaap/minimalist'
-    use 'chriskempson/base16-vim'
-    
-end)
+    -- Colorschemes
+    'Dave-Elec/gruvbox',
+    'ayu-theme/ayu-vim',
+    'vim-airline/vim-airline',
+    'vim-airline/vim-airline-themes',
+    'sainnhe/gruvbox-material',
+    'olimorris/onedarkpro.nvim',
+    'ghifarit53/tokyonight-vim',
+    'eddyekofo94/gruvbox-flat.nvim',
+    'folke/tokyonight.nvim',
+    'sainnhe/everforest',
+})

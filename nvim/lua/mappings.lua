@@ -1,10 +1,24 @@
-local u = require "util"
-local noremap = u.noremap
-local nnoremap = u.nnoremap
-local inoremap = u.inoremap
-local tnoremap = u.tnoremap
-local vnoremap = u.vnoremap
+local g = vim.g
+local utils = require("utils")
+local noremap = utils.noremap
+local nnoremap = utils.nnoremap
+local inoremap = utils.inoremap
+local tnoremap = utils.tnoremap
+local vnoremap = utils.vnoremap
 local api = vim.api
+
+
+
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        if opts.desc then
+            opts.desc = "keymaps.lua: " .. opts.desc
+        end
+        options = vim.tbl_extend('force', options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
 
 
 -- Change window focus
@@ -68,35 +82,4 @@ api.nvim_create_autocmd("TermEnter", {
 nnoremap("<C-T>", "<CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
 inoremap("<C-T>", "<ESC><CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
 
-inoremap("<S-Tab>", "<ESC>la")
-
-------------------------------> TAB completion START <-----------------------------
---local t = function(str)
---        return vim.api.nvim_replace_termcodes(str, true, true, true)
---    end
---
---    local check_back_space = function()
---        local col = vim.fn.col('.') - 1
---        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
---    end
---
---    _G.tab_complete = function()
---        if vim.fn.pumvisible() == 1 then
---            return t "<C-n>"
---        elseif check_back_space() then
---            return t "<Tab>"
---        else
---            vim.fn["coc#refresh"]()
---        end
---    end
---
---    _G.s_tab_complete = function()
---        if vim.fn.pumvisible() == 1 then
---            return t "<C-p>"
---        else
---            return t "<C-h>"
---        end
---    end
---vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
---vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
---------------------------------> TAB completion END <-----------------------------
+-- inoremap("<S-Tab>", "<ESC>la")
