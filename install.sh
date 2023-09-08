@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 printf "\033[34m"
 printf "     _       _    __ _ _           \n"
@@ -21,25 +21,24 @@ printf "\033[0m"
                                    
 
 cwd=$(pwd)
+
+distro=$(cat /etc/os-release | tr [:upper:] [:lower:] | grep -Poi '(ubuntu|fedora|arch)' | uniq)
+declare -A pkgmgr=(
+    [ubuntu]="apt-get install -y build-essential ninja-build gettext cmake unzip curl git"
+    [arch]="pacman -S --noconfirm ninja-build cmake gcc make unzip gettext curl git"
+    [fedora]="dnf install -y base-devel cmake unzip ninja curl git"
+)
+install=${pkgmgr[$distro]}
+printf "$install \n"
+
 printf "[\033[32m?\033[0m] Do you have \033[34mNeovim\033[0m[\033[32m>=v0.7.0\033[0m] installed? [y/N] > "
 read -r nvim_installed
 case "$nvim_installed" in
     [yY][eE][sS]|[yY])
         ;;
     *)
-        distributions=$(lsb_release -d)
 	    printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n"
-        case $distributions in
-            "Ubuntu" | "Debian")
-                sudo apt-get install ninja-build gettext cmake unzip curl
-                ;;
-            "CentOS" | "RHEL" | "Fedora")
-                sudo dnf -y install ninja-build cmake gcc make unzip gettext curl
-                ;;
-            "Arch Linux")
-                sudo pacman -S base-devel cmake unzip ninja curl
-                ;;
-        esac
+        $install
 
         printf "[\033[32m+\033[0m] Compiling latest Neovim...\n"
         # Clone neovim repo
