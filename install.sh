@@ -19,53 +19,28 @@ sleep 0.1
 printf "                     by moonraccoon\n\n\n"
 sleep 0.1
 printf "\033[0m"
-                                   
-                                   
 
 cwd=$(pwd)
 
-distro=$(cat /etc/os-release | tr [:upper:] [:lower:] | grep -Poi '(ubuntu|fedora|arch)' | uniq)
-declare -A pkgmgr=(
-    [ubuntu]="apt-get install -y build-essential ninja-build gettext cmake unzip curl git"
-    [arch]="pacman -S --noconfirm ninja-build cmake gcc make unzip gettext curl git"
-    [fedora]="dnf install -y base-devel cmake unzip ninja curl git"
-)
-install=${pkgmgr[$distro]}
 printf "$install \n"
 
-printf "[\033[32m?\033[0m] Do you have \033[34mNeovim\033[0m[\033[32m>=v0.7.0\033[0m] installed? [y/N] > "
-read -r nvim_installed
-case "$nvim_installed" in
-    [yY][eE][sS]|[yY])
-        ;;
-    *)
-        clear
-	    printf "[\033[32m+\033[0m] Installing Neovim prerequisites...\n\n"
-        sudo $install
+printf "[\033[32m?\033[0m] Do you want to compile latest \033[34mNeovim\033[0m? [y/N] > "
+read -r answer
+if [[ $answer == "y" || $answer == "yes" ]]; then
+    # clear
+    ./scripts/compile-nvim.sh
+fi
+cd $cwd
 
-        clear
-        printf "[\033[32m+\033[0m] Cloning Repository...\n\n"
-        # Clone neovim repo
-        git clone https://github.com/neovim/neovim
-        cd neovim
-        printf "[\033[32m+\033[0m] Compiling Neovim...\n\n"
-        make CMAKE_BUILD_TYPE=RelWithDebInfo -j$(nproc) -s # > /dev/null 2>&1
-        if [$? -ne 0]; then
-            printf "[\033[31mx\033[0m] Compiling Neovim failed...exiting\n"
-            exit 0
-        fi
+printf "[\033[32m?\033[0m] Do you want to install the nvim config? [y/N] > "
+read -r answer
+if [[ $answer == "y" || $answer == "yes" ]]; then
+    # clear
+    cp -r ./nvim /home/$USER/.config
+fi
 
-        # printf "[\033[32m+\033[0m]\033[32m Done\033[0m\n"
-        printf "[\033[32m+\033[0m] Installing...\n"
-	    sudo make install -j$(nproc)
-	    cd ..
-	    rm -rf neovim
-        printf "\033[32mOk\033[0m\n"
-        ;;
-esac
 
-# Install packer.nvim as a plugin manager for neovim
-clear
+# clear
 printf "[\033[32m+\033[0m] Installing Neovim Config..."
 printf "\033[32mOk\033[0m\n"
 
