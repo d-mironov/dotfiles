@@ -17,6 +17,7 @@ install=${pkgmgr[$distro]}
 
 printf "[$GREEN+$CLEAR] Installing Neovim prerequisites...\n\n"
 sudo $install
+sleep 2
 
 clear
 printf "[$GREEN+$CLEAR] Cloning Repository...\n\n"
@@ -39,3 +40,4 @@ sudo make install -j$(nproc)
 cd ..
 rm -rf neovim
 printf "$(GREEN)Ok$CLEAR\n"
+sleep 2

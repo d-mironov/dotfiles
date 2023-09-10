@@ -16,14 +16,36 @@ case $distro in
         ;;
 esac
 
-sleep 0.1
+# First full system upgrade
 printf "[$GREEN+$CLEAR] Doing system upgrade...\n"
-sleep 0.1
 sudo apt-get upgrade -y
+sleep 2
 
-sleep 0.1
+# Install Nala
 printf "[$GREEN+$CLEAR] Installing Nala...\n"
-sleep 0.1
 sudo apt-get install nala -y
+sleep 2
 
+# Adding VSCode keyring
+printf "[$GREEN+$CLEAR] Installing Visual Studio Code\n"
+printf "    Importing Keys\n"
+wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg
+sleep 1
 
+# Add sources for VSCode
+printf "    Adding sources\n"
+echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+sleep 1
+printf "    Installing...\n"
+
+# Install VSCode
+sudo nala update
+sudo nala install -y code
+
+printf "[$GREEN+$CLEAR] Installing necessary packages\n"
+sudo nala install -y build-essential cmake wget curl git unzip kitty fish
+
+printf "[$GREEN+$CLEAR] Setting $(BLUE)fish$CLEAR to default shell\n"
+printf "    You may need to enter your sudo password\n"
+chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
