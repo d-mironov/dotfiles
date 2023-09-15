@@ -9,7 +9,7 @@ source $(dirname "$0")/colors.sh
 
 distro=$(cat /etc/os-release | tr [:upper:] [:lower:] | grep -Poi '(ubuntu|fedora|arch)' | uniq)
 declare -A pkgmgr=(
-    [ubuntu]="apt-get install -y build-essential ninja-build gettext cmake unzip curl git"
+    [ubuntu]="apt-get install -y build-essential ninja-build gettext cmake unzip curl git fonts-agave python-is-python3 python3-pynvim nodejs npm"
     [arch]="pacman -S --noconfirm ninja-build cmake gcc make unzip gettext curl git"
     [fedora]="dnf install -y base-devel cmake unzip ninja curl git"
 )

@@ -30,22 +30,32 @@ sleep 2
 printf "[$GREEN+$CLEAR] Installing Visual Studio Code\n"
 printf "    Importing Keys\n"
 wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg
-sleep 1
+sleep 2
 
 # Add sources for VSCode
 printf "    Adding sources\n"
 echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
 sleep 1
 printf "    Installing...\n"
+sleep 2
 
 # Install VSCode
 sudo nala update
 sudo nala install -y code
+sleep 2
 
 printf "[$GREEN+$CLEAR] Installing necessary packages\n"
-sudo nala install -y build-essential cmake wget curl git unzip kitty fish
+sudo nala install -y build-essential cmake wget curl git unzip kitty fish gnome-software
+sleep 2
 
 printf "[$GREEN+$CLEAR] Setting $(BLUE)fish$CLEAR to default shell\n"
 printf "    You may need to enter your sudo password\n"
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
+sleep 2
+
+printf "[$GREEN+$CLEAR] Setting up Flatpak and Flathub\n"
+sudo nala install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+printf "[$RED!$CLEAR] You need to restart your computer to complete the install\n"
+sleep 2
