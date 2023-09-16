@@ -45,7 +45,17 @@ sudo nala install -y code
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing necessary packages\n"
-sudo nala install -y build-essential cmake wget curl git unzip kitty fish gnome-software
+sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software
+sleep 2
+
+printf "[$GREEN+$CLEAR] Installing python3 packages\n"
+sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-
+sleep 2
+
+
+printf "[$GREEN+$CLEAR] Setting up Flatpak and Flathub\n"
+sudo nala install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sleep 2
 
 printf "[$GREEN+$CLEAR] Setting $(BLUE)fish$CLEAR to default shell\n"
@@ -54,8 +64,9 @@ chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
 sleep 2
 
-printf "[$GREEN+$CLEAR] Setting up Flatpak and Flathub\n"
-sudo nala install -y flatpak gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-printf "[$RED!$CLEAR] You need to restart your computer to complete the install\n"
-sleep 2
+# printf "[$GREEN+$CLEAR] Setting up $(BLUE)fish$CLEAR\n"
+# fish
+# alias ls="exa -lgh" && funcsave ls
+# alias la="exa -lgha" && funcsave la
+
+printf "\n\n[$RED!$CLEAR] You need to restart your computer to complete the setup\n"
