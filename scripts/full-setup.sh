@@ -49,7 +49,7 @@ sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gn
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing python3 packages\n"
-sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-
+sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn
 sleep 2
 
 
