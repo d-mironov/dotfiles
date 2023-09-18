@@ -52,6 +52,10 @@ printf "[$GREEN+$CLEAR] Installing python3 packages\n"
 sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn
 sleep 2
 
+printf "[$GREEN+$CLEAR] Installing ARM toolchain\n"
+sudo nala install -y binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-dev libstdc++-arm-none-eabi-newlib libstdc++-arm-none-eabi-picolibc picolibc-arm-none-eabi stlink-tools stlink-gui libstlink-dev
+sleep 2
+
 
 printf "[$GREEN+$CLEAR] Setting up Flatpak and Flathub\n"
 sudo nala install -y flatpak gnome-software-plugin-flatpak
