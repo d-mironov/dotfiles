@@ -10,6 +10,7 @@ M.gruvbox_material = function()
     g.gruvbox_material_background = "hard"
     g.gruvbox_material_enable_bold = 1
     g.gruvbox_material_spell_foreground = "colored"
+    g.gruvbox_material_transparent_background = 1
 
     g.airline_theme = "gruvbox_material"
 
