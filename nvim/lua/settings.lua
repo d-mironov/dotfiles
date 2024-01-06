@@ -11,6 +11,8 @@ o.clipboard         = "unnamedplus" -- Enable yanking to system clipboard
 o.shiftwidth        = 4
 o.tabstop           = 4             -- <Tab> size
 o.cmdheight         = 2
+o.mouse             = ""
 
 g.mapleader = ' '
 g.maplocalleader = ' '
+

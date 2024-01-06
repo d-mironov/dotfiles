@@ -1,6 +1,5 @@
 local utils = require("utils")
 
-
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
         if desc then
@@ -40,24 +39,29 @@ local on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
+local servers = require("config.lsp-servers")
+local mason = require('mason')
+local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require('lspconfig')
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local servers = require("config.lsp-servers")
+-- Setup Mason
+mason.setup{}
 
-local mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup{
+-- Setup LSPs
+mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
+    handlers = {
+        function(server_name)
+            lspconfig[server_name].setup {
+                capabilities = capabilites,
+                on_attach = on_attach,
+                settings = servers[server_name],
+            }
+        end,
+    }
 }
-mason_lspconfig.setup_handlers{
-    function(server_name)
-        require("lspconfig")[server_name].setup {
-            capabilities = capabilites,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        }
-    end,
-}
---
+
 -- local lspconfig = require("lspconfig")
 -- 
 -- for name, server in pairs(servers) do

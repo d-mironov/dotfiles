@@ -17,12 +17,7 @@ require("lazy").setup({
         "neovim/nvim-lspconfig",
         event = {"BufRead", "BufNewFile"},
         dependencies = {
-            {
-                "williamboman/mason.nvim",
-                config = function()
-                    require("mason").setup()
-                end
-            },
+            "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
@@ -143,6 +138,43 @@ require("lazy").setup({
             vim.notify = require("notify")
         end,
     },
+    {
+        'kaarmu/typst.vim',
+        ft = 'typst',
+        lazy = false,
+    },
+    {
+        'andweeb/presence.nvim',
+        config = function()
+            require('presence').setup({
+                enable_line_number = true,
+
+                line_number_text = "Line %s:%s",
+                workspace_text = "Workspace: %s",
+
+            })
+        end,
+    },
+
+    -- Obsidian
+    {
+        'epwalsh/obsidian.nvim',
+        version = '*',
+        lazy = true,
+        ft = 'markdown',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
+        opts = {
+            workspaces = {
+                {
+                    name = 'Notes',
+                    path = '~/Notes/obsidian',
+                },
+            }
+        },
+    },
+
 
 
     -- Colorschemes

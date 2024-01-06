@@ -6,7 +6,8 @@ g.gruvbox_flat_style = "soft"
 
 M.gruvbox_material = function()
     g.gruvbox_material_diagnostic_virtual_text = "colored"
-    g.gruvbox_material_color_override = { bg0 = {"#1D1D1D", "234"} }
+    -- g.gruvbox_material_color_override = { bg0 = {"#1D1D1D", "234"} }
+    g.gruvbox_material_color_override = { bg0 = {"#161616", "234"} }
     g.gruvbox_material_background = "hard"
     g.gruvbox_material_enable_bold = 1
     g.gruvbox_material_spell_foreground = "colored"
