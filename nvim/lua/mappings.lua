@@ -22,10 +22,14 @@ end
 
 
 -- Change window focus
-nnoremap("<C-J>", "<C-W><C-J>", { desc = "Focus window beneath"})
-nnoremap("<C-K>", "<C-W><C-K>", { desc = "Focus window above"})
-nnoremap("<C-L>", "<C-W><C-L>", { desc = "Focus window right"})
-nnoremap("<C-H>", "<C-W><C-H>", { desc = "Focus window left"})
+nnoremap("<C-J>", "<CMD>wincmd j<CR>", { desc = "Focus window beneath"})
+nnoremap("<C-K>", "<CMD>wincmd k<CR>", { desc = "Focus window above"})
+nnoremap("<C-L>", "<CMD>wincmd l<CR>", { desc = "Focus window right"})
+nnoremap("<C-H>", "<CMD>wincmd h<CR>", { desc = "Focus window left"})
+tnoremap("<C-J>", "<CMD>wincmd j<CR>", { desc = "Focus window beneath"})
+tnoremap("<C-K>", "<CMD>wincmd k<CR>", { desc = "Focus window above"})
+tnoremap("<C-L>", "<CMD>wincmd l<CR>", { desc = "Focus window right"})
+tnoremap("<C-H>", "<CMD>wincmd h<CR>", { desc = "Focus window left"})
 nnoremap("<C-Tab>", "<CMD>bnext<CR>", { desc = "Cycle through buffers"})
 
 nnoremap("sv", "<C-W>v", { desc = "[S]plit [V]ertical"})
@@ -75,11 +79,11 @@ vnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 nnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 
 ------------------------------> Open Terminal Window <----------------------------
-api.nvim_create_autocmd("TermEnter", {
-    pattern = "term://*toggleterm#*",
-    command = "tnoremap <C-T> <CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>" 
-})
-nnoremap("<C-T>", "<CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
-inoremap("<C-T>", "<ESC><CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
+-- api.nvim_create_autocmd("TermEnter", {
+--     pattern = "term://*toggleterm#*",
+--     command = "tnoremap <C-T> <CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>" 
+-- })
+-- nnoremap("<C-T>", "<CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
+-- inoremap("<C-T>", "<ESC><CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
 
 -- inoremap("<S-Tab>", "<ESC>la")

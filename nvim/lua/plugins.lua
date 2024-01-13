@@ -86,6 +86,8 @@ require("lazy").setup({
         config = function()
             require("toggleterm").setup({
                 size = 20,
+                open_mapping = [[<c-/>]],
+                shell = '/usr/bin/fish',
             })
         end,
     },
