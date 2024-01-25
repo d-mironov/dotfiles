@@ -1,5 +1,9 @@
 local servers = {
-    pyright = {},
+    pyright = {
+        analysis = {
+            diagnosticMode = 'openFilesOnly',
+        }
+    },
     clangd = {},
     tsserver = {},
 }

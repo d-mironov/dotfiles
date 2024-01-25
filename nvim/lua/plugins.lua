@@ -54,6 +54,7 @@ require("lazy").setup({
     	},
     },
 
+
     -- Better Syntax Highlighting
     {
         "nvim-treesitter/nvim-treesitter",
