@@ -68,6 +68,9 @@ chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
 sleep 2
 
+printf "[$GREEN+$CLEAR] Installing Cargo and Rust\n"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # printf "[$GREEN+$CLEAR] Setting up $(BLUE)fish$CLEAR\n"
 # fish
 # alias ls="exa -lgh" && funcsave ls

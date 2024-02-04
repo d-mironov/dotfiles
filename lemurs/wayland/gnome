@@ -1,0 +1,2 @@
+#!/bin/sh
+exec env GNOME_SHELL_SESSION_MODE=ubuntu XDG_SESSION_TYPE=wayland  MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland dbus-run-session /usr/bin/gnome-session --session=ubuntu
