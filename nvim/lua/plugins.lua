@@ -138,6 +138,9 @@ require("lazy").setup({
     {
         "rcarriga/nvim-notify",
         config = function()
+            require('notify').setup({
+                background_colour = '#000000',
+            })
             vim.notify = require("notify")
         end,
     },
@@ -146,6 +149,7 @@ require("lazy").setup({
         ft = 'typst',
         lazy = false,
     },
+    'ziglang/zig.vim',
     {
         'andweeb/presence.nvim',
         config = function()

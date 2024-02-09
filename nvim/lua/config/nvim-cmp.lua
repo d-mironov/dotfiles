@@ -37,7 +37,7 @@ cmp.setup({
                 fallback()
             end
         end, {"i", "s"}),
-        -- Use [Shift + Tab] to select next item
+        -- Use [Ctrl + Tab] to select previous item
         ["<C-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -49,7 +49,7 @@ cmp.setup({
         { name = "ultisnips" },
         { name = "path" },
         -- { name = "buffer" },
-        { name = "copilot" },
+        -- { name = "copilot" },
     })
 })
 
