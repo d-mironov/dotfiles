@@ -12,6 +12,7 @@ o.shiftwidth        = 4
 o.tabstop           = 4             -- <Tab> size
 o.cmdheight         = 2
 o.mouse             = ""
+o.conceallevel      = 2
 
 g.mapleader = ' '
 g.maplocalleader = ' '
