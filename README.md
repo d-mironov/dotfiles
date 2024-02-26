@@ -95,7 +95,6 @@ Once I have the time, I will also automate this process so you just need to type
 `tf`: Go to the first tab  
 `fm`: Format the file you are in (Also formats on saving file)
 `K`: Hover definition of function, variable, etc.
-
 When in Autocompletion:  
 `Tab`: Go to next autocomplete suggestion  
 `Shift + Tab`: Go to previous autocomplete suggestion
@@ -103,3 +102,6 @@ When in Autocompletion:
 `Ctrl + b/f`: Scroll through the documentation  
 
 More keybinds will be added once I discover some new shortcuts for something.  
+
+### Credits
+- **FiraCode Nerd Font**: [GitHub](https://github.com/ryanoasis/nerd-fonts)
