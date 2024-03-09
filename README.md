@@ -28,7 +28,8 @@ Once `git` is installed clone the repository with
 ```bash
 git clone https://github.com/moonxraccoon/dotfiles
 ```
-and enter the folder  ```bash
+and enter the folder
+```bash
 cd dotfiles
 ```
 Now you can just run  
@@ -102,6 +103,11 @@ When in Autocompletion:
 `Ctrl + b/f`: Scroll through the documentation  
 
 More keybinds will be added once I discover some new shortcuts for something.  
+
+### TODO
+- [ ] Add Golang to [`install.sh`](./install.sh)
+- [ ] Add `zoxide` to [`install.sh`](./install.sh)
+- [ ] Add `git config` for username and mail to [`install.sh`](./install.sh)
 
 ### Credits
 - **FiraCode Nerd Font**: [GitHub](https://github.com/ryanoasis/nerd-fonts)
