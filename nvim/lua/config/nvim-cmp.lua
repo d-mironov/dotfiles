@@ -19,8 +19,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         -- Scroll Documentation down
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        -- Scroll Documentation up
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        -- Scroll Documentation up ["<C-f>"] = cmp.mapping.scroll_docs(4),
         -- Trigger the autocompletion
         ["<C-Space>"] = cmp.mapping.complete(),
         -- Abort Autocompletion
@@ -31,6 +30,9 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
+            -- elseif vim.fn.exists('b:_codeium_completions') ~= 0 then
+            --     vim.api.nvim_input(vim.fn['codeium#Accept']())
+            --     fallback()
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -48,6 +50,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "ultisnips" },
         { name = "path" },
+        { name = "codeium" },
         -- { name = "buffer" },
         -- { name = "copilot" },
     })

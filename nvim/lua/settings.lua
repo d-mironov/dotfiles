@@ -14,6 +14,8 @@ o.cmdheight         = 2
 o.mouse             = ""
 o.conceallevel      = 2
 
+
 g.mapleader = ' '
 g.maplocalleader = ' '
+g.codeium_tab_fallback="<Tab>"
 

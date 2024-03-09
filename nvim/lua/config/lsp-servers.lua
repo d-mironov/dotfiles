@@ -10,10 +10,27 @@ local servers = {
 -- local servers = {
 --     pyright = {
 --         exec = "pyright",
---         config = {},
+--         config = {
+--             analysis = {
+--                 diagnosticMode = "openFilesOnly",
+--             }
+--         },
 --     },
 --     clangd = {
 --         exec = "clangd",
+--         config = {},
+--     },
+--     zls = {
+--         exec = "zls",
+--         config = {},
+--     },
+--     rust_analyzer = {
+--         exec = "rust-analyzer",
+--         config = {},
+--     },
+--     gopls = {
+--         -- go install golang.org/x/tools/gopls@latest
+--         exec = "gopls",
 --         config = {},
 --     },
 -- }

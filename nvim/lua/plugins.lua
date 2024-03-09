@@ -93,15 +93,28 @@ require("lazy").setup({
         end,
     },
 
-    -- Github Copilot
+    -- Codeium AI
     {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
+        'Exafunction/codeium.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'hrsh7th/nvim-cmp',
+        },
         config = function()
-            require("copilot").setup()
-        end
+            require('codeium').setup({})
+        end,
+        event = 'BufEnter'
     },
+
+    -- Github Copilot
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup()
+    --     end
+    -- },
 
     -- File Explorer
     {
@@ -150,6 +163,20 @@ require("lazy").setup({
         lazy = false,
     },
     'ziglang/zig.vim',
+    {
+        'ray-x/go.nvim',
+        dependencies = {
+            'ray-x/guihua.lua',
+            'neovim/nvim-lspconfig',
+            'nvim-treesitter/nvim-treesitter',
+        },
+        config = function()
+            require('go').setup()
+        end,
+        event = {'CmdlineEnter'},
+        ft = {'go', 'gomod'},
+        build = ':lua require("go.install").update_all_sync()'
+    },
     {
         'andweeb/presence.nvim',
         config = function()

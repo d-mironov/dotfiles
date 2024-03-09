@@ -54,7 +54,7 @@ mason_lspconfig.setup {
     handlers = {
         function(server_name)
             lspconfig[server_name].setup {
-                capabilities = capabilites,
+                capabilities = capabilities,
                 on_attach = on_attach,
                 settings = servers[server_name],
             }
@@ -62,8 +62,7 @@ mason_lspconfig.setup {
     }
 }
 
--- local lspconfig = require("lspconfig")
--- 
+
 -- for name, server in pairs(servers) do
 --     if utils.executable(server.exec) then
 --         lspconfig[name].setup{
