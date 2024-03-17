@@ -42,7 +42,7 @@ cd dotfiles
 ```
 Now you can just run  
 ```bash
-./install.sh
+sudo ./install.sh
 ```
 and follow the instructions. You have the option to build and install Neovim from the master branch if you don't have `nvim[>=v0.7.0]` installed.  
 This will install **Packer** as the plugin manager for nvim and also install all the plugins which I have active at the moment.  
