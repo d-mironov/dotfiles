@@ -16,7 +16,7 @@ SIMPLE / FUNCTIONAL / EASY TO USE
 ```
 </p>
 
-## Purpose
+## Preview
 ### NeoVim
 ![nvim-1](images/nvim-1.png)
 ![nvim-2](images/nvim-2.png)
