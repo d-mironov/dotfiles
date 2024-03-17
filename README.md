@@ -22,7 +22,7 @@ SIMPLE / FUNCTIONAL / EASY TO USE
 ![nvim-2](images/nvim-2.png)
 ### Kitty
 <div align="center">
-![kitty-1](images/kitty-1.png)
+    <img src="images/kitty.png" alt="kitty" />
 </div>
 
 ## Installation
