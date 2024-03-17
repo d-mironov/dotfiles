@@ -58,45 +58,26 @@ The config is strucured like so:
 ```
 nvim
 |____ lua
-|     |____ keybinds.lua    <= Keybind config is here (obviously)
+|     |____ config          <= Folder for specific setup of plugins
+|     |____ mappings.lua    <= Keybind config is here (obviously)
 |     |____ plugins.lua     <= The packer.nvim plugin list
-|     |____ setup.lua       <= Setup for all the plugins
-|     |____ util.lua        <= Utility function
-|     |____ lsp.lua         <= Add your LSP configuration here
+|     |____ settings.lua    <= NeoVim settings
+|     |____ utils.lua       <= Utility function
 |____ init.lua              <= inital configuration and theme selection
 ```
 ### Adding an LSP for autocompletion:
-To use the autocompletion you need to go to the file you want the autocompletion to 
-work on. Then you install the language server with `:LspInstall` and select the 
-languageserver you want. Once it is installed you can add the LSP to the autocompletion like so:
-```lua
-local servers = {
-    lsp_name = {},
-
-    -- clangd = {},
-    -- jedi_language_server = {},
-    ...
-}
-```
-Where `YOUR_LSP` is the LSP name you installed.  
-The following LSP Server's are already preconfigured:  
-- `ccls` (C/C++)
-- `jedi_language_server` (Python)
-- `zls` (Zig)
-- `julials` (Julia)
-- `rust_analyzer` (Rust)
-- `gopls` (Golang)
-- `html` (HTML)
-- `marksman` (Markdown)
-- `bashls` (Bash) 
-Once I have the time, I will also automate this process so you just need to type `:AddLspConfig`.
+To install autocompletion for a specific filetype you just need to use `:Mason` and install it.
+The following LSP Server's are already preinstalled:  
+- `pyright` (Python)
+- `clangd` (C/C++)
+- `tsserver` (Typescript)
 
 ### General Keybinds:
 `Ctrl + h/j/k/l`: Change window focus to left/beneath/above/right window  
-`Ctrl + t`: Open/Close floating terminal  
+`Ctrl + /`: Open/Close floating terminal  
 `fe`: Open/Close the file explorer on the left  
 `ff`: Open the fuzzy finder to find files faster  
-`FF`: Search for already open files  
+`FF`: Search for already open buffers  
 `tn`: Create a new, empty tab  
 `tc`: Close the current tab, if it is not empty  
 `tl`: Move to the next tab  
