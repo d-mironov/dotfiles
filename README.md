@@ -55,15 +55,15 @@ explained below.
 
 ## NeoVim config and keybinds
 The config is strucured like so:
-```
+```graphql
 nvim
-|____ lua
-|     |____ config          <= Folder for specific setup of plugins
-|     |____ mappings.lua    <= Keybind config is here (obviously)
-|     |____ plugins.lua     <= The packer.nvim plugin list
-|     |____ settings.lua    <= NeoVim settings
-|     |____ utils.lua       <= Utility function
-|____ init.lua              <= inital configuration and theme selection
+ ├─ lua
+ │   ├─ config          # Folder for specific setup of plugins
+ │   ├─ mappings.lua    # Keybind config is here (obviously)
+ │   ├─ plugins.lua     # The packer.nvim plugin list
+ │   ├─ settings.lua    # NeoVim settings
+ │   └─ utils.lua       # Utility function
+ └─ init.lua            # inital configuration and theme selection
 ```
 
 ### Plugins
