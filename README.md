@@ -1,4 +1,4 @@
-<div align="center">
+<p align="center">
 
 ```ocaml
 SIMPLE / FUNCTIONAL / EASY TO USE
@@ -14,8 +14,11 @@ SIMPLE / FUNCTIONAL / EASY TO USE
                      by moonraccoon
 
 ```
+</p>
 
-</div>
+## Purpose
+### NeoVim
+![](images/nvim-1.png)
 
 ## Installation
 For now only Debian based Linux Distributions work. Need to implement and test the script to install all the dependencies based on the used Distribution.
