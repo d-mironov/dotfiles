@@ -65,6 +65,12 @@ nvim
 |     |____ utils.lua       <= Utility function
 |____ init.lua              <= inital configuration and theme selection
 ```
+
+### Plugins
+**TODO**
+> [!IMPORTANT]
+> You need to run `:LazyUpdate` periodically to update all the plugins to the latest version.
+
 ### Adding an LSP for autocompletion:
 To install autocompletion for a specific filetype you just need to use `:Mason` and install it.
 The following LSP Server's are already preinstalled:  
