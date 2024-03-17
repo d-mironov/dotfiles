@@ -20,6 +20,8 @@ SIMPLE / FUNCTIONAL / EASY TO USE
 ### NeoVim
 ![nvim-1](images/nvim-1.png)
 ![nvim-2](images/nvim-2.png)
+### Kitty
+![kitty-1](images/kitty-1.png)
 
 ## Installation
 For now only Debian based Linux Distributions work. Need to implement and test the script to install all the dependencies based on the used Distribution.
