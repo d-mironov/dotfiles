@@ -58,9 +58,10 @@ This will install **Packer** as the plugin manager for nvim and also install all
 Once the `nvim` install an configuration finishes, you can find the config files in `~/.config/nvim`. The folder structure is 
 explained below.
 
-## Software Used
-- neovim as my main Code Editor/IDE
-- kitty as a terminal
+## Software/Tools Used
+- [NeoVim](https://github.com/neovim/neovim): Main code-editor and IDE
+- [Kitty](https://github.com/kovidgoyal/kitty): Terminal emulator
+- [Fish Shell](https://github.com/fish-shell/fish-shell): Terminal shell
 
 ## NeoVim config and keybinds
 The config is strucured like so:
@@ -78,14 +79,14 @@ nvim
 ### Plugins
 **TODO**
 > [!IMPORTANT]
-> You need to run `:LazyUpdate` periodically to update all the plugins to the latest version.
+> You need to run `:Lazy` then just `u` periodically to update all the plugins to the latest version.
 
 ### Adding an LSP for autocompletion:
 To install autocompletion for a specific filetype you just need to use `:Mason` and install it.
 The following LSP Server's are already preconfigured an will be installed automatically:  
-- `pyright` (Python)
-- `clangd` (C/C++)
-- `tsserver` (Typescript)
+- [`pyright`](https://github.com/microsoft/pyright) (Python)
+- [`clangd`](https://clangd.llvm.org/) (C/C++)
+- [`tsserver`](https://github.com/microsoft/TypeScript/wiki/Standalone-Server-(tsserver)) (Typescript)
 
 ### General Keybinds:
 `Ctrl + h/j/k/l`: Change window focus to left/beneath/above/right window  
