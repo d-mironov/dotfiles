@@ -1,4 +1,3 @@
-<p align="center">
 
 ```ocaml
 SIMPLE / FUNCTIONAL / EASY TO USE
@@ -14,7 +13,14 @@ SIMPLE / FUNCTIONAL / EASY TO USE
                      by moonraccoon
 
 ```
-</p>
+
+<details>
+<summary>Table of content</summary>
+- [Preview](#preview)
+- [Installation](#installation)
+- [NeoVim Config](#neovim-config-and-keybinds)
+</details>
+
 
 ## Preview
 ### NeoVim
@@ -73,7 +79,7 @@ nvim
 
 ### Adding an LSP for autocompletion:
 To install autocompletion for a specific filetype you just need to use `:Mason` and install it.
-The following LSP Server's are already preinstalled:  
+The following LSP Server's are already preconfigured an will be installed automatically:  
 - `pyright` (Python)
 - `clangd` (C/C++)
 - `tsserver` (Typescript)
@@ -99,10 +105,11 @@ When in Autocompletion:
 
 More keybinds will be added once I discover some new shortcuts for something.  
 
-### TODO
+## TODO
 - [ ] Add Golang to [`install.sh`](./install.sh)
 - [ ] Add `zoxide` to [`install.sh`](./install.sh)
 - [ ] Add `git config` for username and mail to [`install.sh`](./install.sh)
+- [ ] Add font installation to [`install.sh`](./install.sh)
 
-### Credits
+## Credits
 - **FiraCode Nerd Font**: [GitHub](https://github.com/ryanoasis/nerd-fonts)
