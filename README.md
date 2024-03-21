@@ -14,11 +14,14 @@ SIMPLE / FUNCTIONAL / EASY TO USE
 
 ```
 
+### Table of Content
 <details>
-<summary>Table of content</summary>
-- [Preview](#preview)
-- [Installation](#installation)
-- [NeoVim Config](#neovim-config-and-keybinds)
+<summary>Click to expand</summary>
+
+- [Preview](#preview)  
+- [Installation](#installation)  
+- [NeoVim Config](#neovim-config-and-keybinds)  
+
 </details>
 
 
