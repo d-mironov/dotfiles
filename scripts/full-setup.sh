@@ -44,12 +44,16 @@ sudo nala update
 sudo nala install -y code
 sleep 2
 
-printf "[$GREEN+$CLEAR] Installing necessary packages\n"
+printf "[$GREEN+$CLEAR] Installing essential packages\n"
 sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software
 sleep 2
 
-printf "[$GREEN+$CLEAR] Installing python3 packages\n"
-sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn
+printf "[$GREEN+$CLEAR] Installing Go\n"
+sudo nala install -y golang
+sleep 2
+
+printf "[$GREEN+$CLEAR] Installing Python3 packages\n"
+sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn python3-pynvim
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing ARM toolchain\n"
@@ -62,14 +66,30 @@ sudo nala install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sleep 2
 
+printf "[$GREEN+$CLEAR] Installing Cargo and Rust\n"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sleep 2
+
+printf "[$GREEN+$CLEAR] Setting up $(GREEN)git$CLEAR"
+git config --global user.email "mail@danielmironov.dev"
+git config --global user.name "Daniel Mironov"
+sleep 2
+
+printf "[$GREEN+$CLEAR] Installing and setting up $(GREEN)zoxide$CLEAR\n"
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+sleep 2
+
+printf "[$GREEN+$CLEAR] Installing fonts"
+sudo cp fonts/* /usr/local/share/fonts/ && sudo fc-cache -fv
+sleep 2
+
+
 printf "[$GREEN+$CLEAR] Setting $(BLUE)fish$CLEAR to default shell\n"
 printf "    You may need to enter your sudo password\n"
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
 sleep 2
 
-printf "[$GREEN+$CLEAR] Installing Cargo and Rust\n"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # printf "[$GREEN+$CLEAR] Setting up $(BLUE)fish$CLEAR\n"
 # fish
