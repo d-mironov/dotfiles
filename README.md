@@ -79,7 +79,7 @@ nvim
 ### Plugins
 **TODO**
 > [!IMPORTANT]
-> You need to run `:Lazy` then just `u` periodically to update all the plugins to the latest version.
+> You need to run `:Lazy` then just `u` to update all the plugins to the latest version periodically.
 
 ### Adding an LSP for autocompletion:
 To install autocompletion for a specific filetype you just need to use `:Mason` and install it.
@@ -111,6 +111,7 @@ More keybinds will be added once I discover some new shortcuts for something.
 
 ## TODO
 - [x] Add **Golang** to [install script](./install.sh)
+- [ ] Add **Homebrew** to [install script](./install.sh)
 - [ ] Add `zoxide` to [install script](./install.sh)
     - [x] Add `zoxide` inside [`install.sh`](./install.sh)
     - [ ] Add `zoxide init fish | source` to `config.fish`
@@ -119,6 +120,7 @@ More keybinds will be added once I discover some new shortcuts for something.
 - [ ] Add **Sycnthing** installation and service setup to [install script](./install.sh)
 - [ ] Make [install script](./install.sh) more interactive and less verbose.
 - [ ] Make [install script](./install.sh) more robust.
+- [ ] Separate all install steps into different files.
 
 ## Credits
 - **FiraCode Nerd Font**: [GitHub](https://github.com/ryanoasis/nerd-fonts)
