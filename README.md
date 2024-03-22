@@ -110,10 +110,11 @@ When in Autocompletion:
 More keybinds will be added once I discover some new shortcuts for something.  
 
 ## TODO
-- [ ] Add Golang to [`install.sh`](./install.sh)
-- [ ] Add `zoxide` to [`install.sh`](./install.sh)
-- [ ] Add `git config` for username and mail to [`install.sh`](./install.sh)
-- [ ] Add font installation to [`install.sh`](./install.sh)
+- [ ] Add **Golang** to [install script](./install.sh)
+- [ ] Add `zoxide` to [install script](./install.sh)
+- [ ] Add `git config` for username and mail to [install script](./install.sh)
+- [ ] Add font installation to [install script](./install.sh)
+- [ ] Add **Sycnthing** installation and service setup to [install script](./install.sh)
 
 ## Credits
 - **FiraCode Nerd Font**: [GitHub](https://github.com/ryanoasis/nerd-fonts)
