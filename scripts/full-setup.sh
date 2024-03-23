@@ -45,7 +45,7 @@ sudo nala install -y code
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing essential packages\n"
-sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software
+sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software ripgrep
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing Go\n"
