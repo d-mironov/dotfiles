@@ -94,27 +94,27 @@ require("lazy").setup({
     },
 
     -- Codeium AI
-    {
-        'Exafunction/codeium.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'hrsh7th/nvim-cmp',
-        },
-        config = function()
-            require('codeium').setup({})
-        end,
-        event = 'BufEnter'
-    },
+    -- {
+    --     'Exafunction/codeium.nvim',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'hrsh7th/nvim-cmp',
+    --     },
+    --     config = function()
+    --         require('codeium').setup({})
+    --     end,
+    --     event = 'BufEnter'
+    -- },
 
     -- Github Copilot
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     event = "InsertEnter",
-    --     config = function()
-    --         require("copilot").setup()
-    --     end
-    -- },
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup()
+        end
+    },
 
     -- File Explorer
     {

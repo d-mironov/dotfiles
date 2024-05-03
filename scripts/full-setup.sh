@@ -45,7 +45,7 @@ sudo nala install -y code
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing essential packages\n"
-sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software ripgrep
+sudo nala install -y build-essential cmake wget curl git unzip kitty fish exa gnome-software ripgrep libstdc++-12-dev
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing Go\n"
@@ -53,12 +53,17 @@ sudo nala install -y golang
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing Python3 packages\n"
-sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn python3-pynvim
+sudo nala install -y python3-ipykernel python3-numpy python3-matplotlib python3-scipy python3-wheel python3-pandas python3-sklearn python3-pynvim python-is-python3
 sleep 2
 
 printf "[$GREEN+$CLEAR] Installing ARM toolchain\n"
 sudo nala install -y binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-dev libstdc++-arm-none-eabi-newlib libstdc++-arm-none-eabi-picolibc picolibc-arm-none-eabi stlink-tools stlink-gui libstlink-dev
 sleep 2
+
+printf "[$GREEN+$CLEAR] Installing Syncthing\n"
+sudo nala install -y syncthing
+sudo cp systemd/syncthing@.service /etc/systemd/system/
+sudo systemctl enable --now syncthing@$USER
 
 
 printf "[$GREEN+$CLEAR] Setting up Flatpak and Flathub\n"
@@ -88,6 +93,10 @@ printf "[$GREEN+$CLEAR] Setting $(BLUE)fish$CLEAR to default shell\n"
 printf "    You may need to enter your sudo password\n"
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
+sleep 2
+
+printf "[$GREEN+$CLEAR] Installing kitty configuration...\n"
+cp -r config/kitty /home/$USER/.config
 sleep 2
 
 

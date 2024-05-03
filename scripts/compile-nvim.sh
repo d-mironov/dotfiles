@@ -40,4 +40,9 @@ sudo make install -j$(nproc)
 cd ..
 rm -rf neovim
 printf "$(GREEN)Ok$CLEAR\n"
-sleep 2
+
+
+printf "[$GREEN+$CLEAR] Installing configuration files...\n"
+cp -r config/nvim /home/$USER/.config/
+sleep 3
+

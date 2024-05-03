@@ -19,3 +19,4 @@ g.mapleader = ' '
 g.maplocalleader = ' '
 g.codeium_tab_fallback="<Tab>"
 
+g.codeium_enabled = false
