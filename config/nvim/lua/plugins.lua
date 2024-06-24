@@ -166,13 +166,24 @@ require("lazy").setup({
             require("config.indent-blankline")
         end,
     },
+    -- {
+    --     "rcarriga/nvim-notify",
+    --     config = function()
+    --         require('notify').setup({
+    --             background_colour = '#000000',
+    --         })
+    --         vim.notify = require("notify")
+    --     end,
+    -- },
     {
-        "rcarriga/nvim-notify",
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
         config = function()
-            require('notify').setup({
-                background_colour = '#000000',
-            })
-            vim.notify = require("notify")
+            require("config.noice")
         end,
     },
     {
