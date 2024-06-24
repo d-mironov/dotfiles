@@ -93,6 +93,12 @@ require("lazy").setup({
         end,
     },
 
+    {
+        "mrcjkb/rustaceanvim",
+        version = "*",
+        lazy = false,
+    },
+
     -- Codeium AI
     -- {
     --     'Exafunction/codeium.nvim',
@@ -199,14 +205,9 @@ require("lazy").setup({
         dependencies = {
             'nvim-lua/plenary.nvim',
         },
-        opts = {
-            workspaces = {
-                {
-                    name = 'Notes',
-                    path = '~/Notes/obsidian',
-                },
-            }
-        },
+        config = function()
+            require("config.obsidian")
+        end,
     },
 
 
