@@ -92,10 +92,22 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "romgrk/searchbox.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+    },
+    {
+        "VonHeikemen/fine-cmdline.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+    },
 
     {
         "mrcjkb/rustaceanvim",
-        version = "*",
+        version = "^4",
         lazy = false,
     },
 

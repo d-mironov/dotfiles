@@ -78,6 +78,12 @@ nnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})
 vnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 nnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 
+-- TODO: Fix issue with match_all
+-- nnoremap("<leader>s", ":SearchBoxMatchAll clear_matches=false<CR>", {desc = "Search in file"})
+-- vnoremap("<leader>s", ":SearchBoxIncSearch visual_mode=true<CR>", {desc = "Search in file"})
+
+nnoremap(":", "<cmd>FineCmdline<CR>", {desc = "Ex-Commandline"})
+
 ------------------------------> Open Terminal Window <----------------------------
 -- api.nvim_create_autocmd("TermEnter", {
 --     pattern = "term://*toggleterm#*",
