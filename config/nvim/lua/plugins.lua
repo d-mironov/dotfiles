@@ -99,14 +99,10 @@ require("lazy").setup({
     -- Terminal popup
     {
         "akinsho/toggleterm.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("toggleterm").setup({
-                size = 20,
-                open_mapping = [[<c-/>]],
-                shell = '/usr/bin/fish',
-            })
-        end,
+        version = "*",
+        opts = {
+            shell = '/usr/bin/fish',
+        }
     },
     {
         "romgrk/searchbox.nvim",
@@ -187,6 +183,9 @@ require("lazy").setup({
         config = function()
             require('notify').setup({
                 background_colour = '#000000',
+                render = "compact",
+                stages = "slide",
+                timeout = 2000,
             })
             vim.notify = require("notify")
         end,
