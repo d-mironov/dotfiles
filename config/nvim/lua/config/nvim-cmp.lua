@@ -7,18 +7,28 @@ end
 
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 cmp.setup({
+    completion = { completeopt = "menu,menuone" },
     snippet = {
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body)
         end
     },
     window = {
-        completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+            border = "double",
+            winhighlight = "FloatBorder:None,Normal:None",
+        }),
         documentation = cmp.config.window.bordered(),
     },
+
     mapping = cmp.mapping.preset.insert({
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+
         -- Scroll Documentation down
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+
         -- Scroll Documentation up ["<C-f>"] = cmp.mapping.scroll_docs(4),
         -- Trigger the autocompletion
         ["<C-Space>"] = cmp.mapping.complete(),
@@ -30,9 +40,6 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            -- elseif vim.fn.exists('b:_codeium_completions') ~= 0 then
-            --     vim.api.nvim_input(vim.fn['codeium#Accept']())
-            --     fallback()
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -40,9 +47,11 @@ cmp.setup({
             end
         end, {"i", "s"}),
         -- Use [Ctrl + Tab] to select previous item
-        ["<C-Tab>"] = cmp.mapping(function()
+        ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
+            else
+                fallback()
             end
         end, {"i", "s"}),
     }),
@@ -55,5 +64,3 @@ cmp.setup({
         -- { name = "copilot" },
     })
 })
-
-

@@ -1,4 +1,13 @@
-local utils = require("utils")
+local function safe_require(mod)
+    local ok, result = pcall(require, mod)
+    if not ok then
+        vim.notify("Error loading module: " .. mod, vim.log.levels.ERROR)
+        return nil
+    end
+    return result
+end
+
+local utils = safe_require("utils")
 
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
@@ -15,11 +24,13 @@ local on_attach = function(_, bufnr)
     nmap('<leader>w', '<cmd>w<cr>', '[W]rite buffer')
 
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+
+    local telescope = safe_require("telescope.builtin")
+    nmap('gr', telescope.lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    nmap('<leader>ds', telescope.lsp_document_symbols, '[D]ocument [S]ymbols')
+    nmap('<leader>ws', telescope.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -39,11 +50,15 @@ local on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
-local servers = require("config.lsp-servers")
-local mason = require('mason')
-local mason_lspconfig = require("mason-lspconfig")
-local lspconfig = require('lspconfig')
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local servers = safe_require("config.lsp-servers")
+local mason = safe_require('mason')
+local mason_lspconfig = safe_require("mason-lspconfig")
+local lspconfig = safe_require('lspconfig')
+local capabilities = safe_require("cmp_nvim_lsp").default_capabilities()
+
+if not (mason and mason_lspconfig and lspconfig) then
+    return
+end
 
 -- Setup Mason
 mason.setup{}
@@ -62,16 +77,3 @@ mason_lspconfig.setup {
     }
 }
 
-
--- for name, server in pairs(servers) do
---     if utils.executable(server.exec) then
---         lspconfig[name].setup{
---             on_attach = on_attach,
---             capabilities = capabilities,
---             -- filetypes = server.filetypes,
---             settings = server.config,
---         }
---     else
---         vim.notify(server.exec .. " not found!", vim.log.levels.WARN, { title = "nvim-config" })
---     end
--- end

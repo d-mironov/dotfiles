@@ -36,8 +36,8 @@ nnoremap("sv", "<C-W>v", { desc = "[S]plit [V]ertical"})
 nnoremap("sh", "<C-W>s", { desc = "[S]plit [H]orizontal"})
 
 -- Open file explorer
-vnoremap("fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
-nnoremap("fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
+vnoremap("<leader>fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
+nnoremap("<leader>fe", "<CMD>NvimTreeToggle<CR>", { desc = "Open file explorer"})
 --vnoremap("fe", "<CMD>NERDTreeToggle<CR>", { desc = "Open file explorer"})
 --nnoremap("fe", "<CMD>NERDTreeToggle<CR>", { desc = "Open file explorer"})
 
@@ -75,21 +75,6 @@ vnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})
 nnoremap("tf", "<CMD>tabfirst<CR>", {desc = "Goto first tab"})
 
 -- Goto first tab
-vnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
-nnoremap("fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
+vnoremap("<leader>fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
+nnoremap("<leader>fm", "<CMD>Neoformat<CR>", {desc = "Autoformat the file"})
 
--- TODO: Fix issue with match_all
--- nnoremap("<leader>s", ":SearchBoxMatchAll clear_matches=false<CR>", {desc = "Search in file"})
--- vnoremap("<leader>s", ":SearchBoxIncSearch visual_mode=true<CR>", {desc = "Search in file"})
-
--- nnoremap(":", "<cmd>FineCmdline<CR>", {desc = "Ex-Commandline"})
-
-------------------------------> Open Terminal Window <----------------------------
--- api.nvim_create_autocmd("TermEnter", {
---     pattern = "term://*toggleterm#*",
---     command = "tnoremap <C-T> <CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>" 
--- })
--- nnoremap("<C-T>", "<CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
--- inoremap("<C-T>", "<ESC><CMD>exe v:count1 . \"ToggleTerm direction=horizontal\"<CR>")
-
--- inoremap("<S-Tab>", "<ESC>la")

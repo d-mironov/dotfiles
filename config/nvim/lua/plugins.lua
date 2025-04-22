@@ -27,14 +27,30 @@ require("lazy").setup({
     -- Auto-completion engine
     {
         "hrsh7th/nvim-cmp",
-        event = "VeryLazy",
+        event = "InsertEnter",
         dependencies = {
+            {
+                "windwp/nvim-autopairs",
+                opts = {
+                    fast_wrap = {},
+                    disable_filetype = { "TelescopePrompt", "vim" },
+                },
+                config = function(_, opts)
+                    require("nvim-autopairs").setup(opts)
+
+                    -- setup cmp for autopairs
+                    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+                    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+                end,
+            },
+            -- cmp sources plugins
             "hrsh7th/cmp-nvim-lsp",     -- Builtin Neovim LSP
             "hrsh7th/cmp-path",         -- Path completion
             "hrsh7th/cmp-buffer",       -- Buffer completion
             "hrsh7th/cmp-omni",
             {
                 "quangnguyen30192/cmp-nvim-ultisnips",
+                event = "InsertEnter",
                 config = function()
                     require("cmp_nvim_ultisnips").setup{}
                 end
@@ -105,11 +121,11 @@ require("lazy").setup({
         },
     },
 
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^4",
-        lazy = false,
-    },
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^4",
+    --     lazy = false,
+    -- },
 
     -- Codeium AI
     -- {
@@ -166,15 +182,15 @@ require("lazy").setup({
             require("config.indent-blankline")
         end,
     },
-    -- {
-    --     "rcarriga/nvim-notify",
-    --     config = function()
-    --         require('notify').setup({
-    --             background_colour = '#000000',
-    --         })
-    --         vim.notify = require("notify")
-    --     end,
-    -- },
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            require('notify').setup({
+                background_colour = '#000000',
+            })
+            vim.notify = require("notify")
+        end,
+    },
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -192,20 +208,6 @@ require("lazy").setup({
         lazy = false,
     },
     'ziglang/zig.vim',
-    {
-        'ray-x/go.nvim',
-        dependencies = {
-            'ray-x/guihua.lua',
-            'neovim/nvim-lspconfig',
-            'nvim-treesitter/nvim-treesitter',
-        },
-        config = function()
-            require('go').setup()
-        end,
-        event = {'CmdlineEnter'},
-        ft = {'go', 'gomod'},
-        build = ':lua require("go.install").update_all_sync()'
-    },
     {
         'andweeb/presence.nvim',
         config = function()
@@ -242,7 +244,6 @@ require("lazy").setup({
     'vim-airline/vim-airline-themes',
     'sainnhe/gruvbox-material',
     'olimorris/onedarkpro.nvim',
-    'ghifarit53/tokyonight-vim',
     'eddyekofo94/gruvbox-flat.nvim',
     'folke/tokyonight.nvim',
     'sainnhe/everforest',
